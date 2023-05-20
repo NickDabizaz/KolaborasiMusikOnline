@@ -9,18 +9,4 @@ module.exports = {
     port: process.env.DEV_DB_PORT,
     dialect: process.env.DEV_DB_DIALECT,
   },
-  test: {
-    username: "root",
-    password: null,
-    database: "database_test",
-    host: "127.0.0.1",
-    dialect: "mysql",
-  },
-  production: {
-    username: "root",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
-    dialect: "mysql",
-  },
 };
