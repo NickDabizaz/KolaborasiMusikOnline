@@ -18,9 +18,7 @@ const registerMusisi = async (req, res) => {
     // Implementasi logika bisnis untuk mengupload rekaman musik atau video
   };
   
-  const giveCommentOrFeedback = async (req, res) => {
-    // Implementasi logika bisnis untuk memberikan komentar atau feedback
-  };
+
   
   const deleteProject = async (req, res) => {
     // Implementasi logika bisnis untuk menghapus proyek musik
@@ -29,10 +27,8 @@ const registerMusisi = async (req, res) => {
   module.exports = {
     registerMusisi,
     loginMusisi,
-    createProject,
     inviteMusisi,
     uploadRecording,
-    giveCommentOrFeedback,
     deleteProject
   };
   

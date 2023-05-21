@@ -11,8 +11,15 @@ module.exports = {
       project_id: {
         type: Sequelize.STRING
       },
-      user_id: {
-        type: Sequelize.STRING
+      musician_id: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'user_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

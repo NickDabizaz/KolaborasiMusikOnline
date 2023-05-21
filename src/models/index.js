@@ -15,20 +15,12 @@ const Project = require('./Project');
 const ProjectMember = require('./ProjectMember');
 const Recording = require('./Recording');
 const Comment = require('./Comment');
-const MusicProject = require('./MusicProject');
-const ProjectMusician = require('./ProjectMusician');
-const MusicProjectPost = require('./MusicProjectPost');
-const MusicProjectComment = require('./MusicProjectComment');
 
 db.User = User(connection, DataTypes);
 db.Project = Project(connection, DataTypes);
 db.ProjectMember = ProjectMember(connection, DataTypes);
 db.Recording = Recording(connection, DataTypes);
 db.Comment = Comment(connection, DataTypes);
-db.MusicProject = MusicProject(connection, DataTypes);
-db.ProjectMusician = ProjectMusician(connection, DataTypes);
-db.MusicProjectPost = MusicProjectPost(connection, DataTypes);
-db.MusicProjectComment = MusicProjectComment(connection, DataTypes);
 
 let sequelize;
 if (config.use_env_variable) {

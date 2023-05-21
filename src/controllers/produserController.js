@@ -6,7 +6,7 @@ const registerProduser = async (req, res) => {
     // Implementasi logika bisnis untuk login produser
   };
   
-  const createProjectPost = async (req, res) => {
+  const createProject = async (req, res) => {
     // Implementasi logika bisnis untuk membuat postingan proyek musik baru
   };
   
@@ -25,7 +25,7 @@ const registerProduser = async (req, res) => {
   module.exports = {
     registerProduser,
     loginProduser,
-    createProjectPost,
+    createProject,
     searchMusisi,
     inviteMusisi,
     deleteProjectPost

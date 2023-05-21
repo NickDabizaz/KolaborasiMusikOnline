@@ -4,22 +4,36 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class ProjectMember extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      ProjectMember.belongsTo(models.Project, {
+        foreignKey: 'project_id',
+        as: 'project'
+      });
+      ProjectMember.belongsTo(models.User, {
+        foreignKey: 'musician_id',
+        as: 'musician'
+      });
     }
+    
   }
   ProjectMember.init({
-    project_member_id: DataTypes.STRING,
-    project_id: DataTypes.STRING,
-    user_id: DataTypes.STRING
+    project_member_id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+      allowNull: false
+    },
+    project_id: {
+      type: DataTypes.STRING
+    },
+    musician_id: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'ProjectMember',
+    tableName: 'Project_Members',
+    timestamps: true
   });
   return ProjectMember;
 };

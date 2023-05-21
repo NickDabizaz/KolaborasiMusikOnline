@@ -1,3 +1,4 @@
+
 const registerUser = async (req, res) => {
     // Implementasi logika bisnis untuk register user
   };
@@ -10,11 +11,11 @@ const registerUser = async (req, res) => {
     // Implementasi logika bisnis untuk mendengarkan musik
   };
   
-  const giveCommentOrFeedback = async (req, res) => {
+  const giveComment = async (req, res) => {
     // Implementasi logika bisnis untuk memberikan komentar atau feedback
   };
   
-  const deleteCommentOrFeedback = async (req, res) => {
+  const deleteComment = async (req, res) => {
     // Implementasi logika bisnis untuk menghapus komentar atau feedback
   };
   
@@ -30,8 +31,8 @@ const registerUser = async (req, res) => {
     registerUser,
     loginUser,
     listenToMusic,
-    giveCommentOrFeedback,
-    deleteCommentOrFeedback,
+    giveComment,
+    deleteComment,
     topUp,
     recharge
   };
