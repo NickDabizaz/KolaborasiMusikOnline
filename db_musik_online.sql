@@ -22,63 +22,19 @@ DROP TABLE IF EXISTS `comments`;
 
 CREATE TABLE `comments` (
   `comment_id` varchar(255) NOT NULL,
-  `project_id` varchar(255) DEFAULT NULL,
-  `commenter_id` varchar(255) DEFAULT NULL,
+  `project_id` varchar(255) NOT NULL,
+  `commenter_id` varchar(255) NOT NULL,
   `comment` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`comment_id`)
+  PRIMARY KEY (`comment_id`),
+  KEY `project_id` (`project_id`),
+  KEY `commenter_id` (`commenter_id`),
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`commenter_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `comments` */
-
-/*Table structure for table `music_project_comments` */
-
-DROP TABLE IF EXISTS `music_project_comments`;
-
-CREATE TABLE `music_project_comments` (
-  `music_project_comment_id` varchar(255) NOT NULL,
-  `music_project_post_id` varchar(255) DEFAULT NULL,
-  `commenter_id` varchar(255) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`music_project_comment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `music_project_comments` */
-
-/*Table structure for table `music_project_posts` */
-
-DROP TABLE IF EXISTS `music_project_posts`;
-
-CREATE TABLE `music_project_posts` (
-  `music_project_post_id` varchar(255) NOT NULL,
-  `music_project_id` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`music_project_post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `music_project_posts` */
-
-/*Table structure for table `music_projects` */
-
-DROP TABLE IF EXISTS `music_projects`;
-
-CREATE TABLE `music_projects` (
-  `music_project_id` varchar(255) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`music_project_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `music_projects` */
 
 /*Table structure for table `project_members` */
 
@@ -87,28 +43,15 @@ DROP TABLE IF EXISTS `project_members`;
 CREATE TABLE `project_members` (
   `project_member_id` varchar(255) NOT NULL,
   `project_id` varchar(255) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
+  `musician_id` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`project_member_id`)
+  PRIMARY KEY (`project_member_id`),
+  KEY `musician_id` (`musician_id`),
+  CONSTRAINT `project_members_ibfk_1` FOREIGN KEY (`musician_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `project_members` */
-
-/*Table structure for table `project_musicians` */
-
-DROP TABLE IF EXISTS `project_musicians`;
-
-CREATE TABLE `project_musicians` (
-  `project_musician_id` varchar(255) NOT NULL,
-  `music_project_id` varchar(255) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`project_musician_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `project_musicians` */
 
 /*Table structure for table `projects` */
 
@@ -118,10 +61,12 @@ CREATE TABLE `projects` (
   `project_id` varchar(255) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
+  `producer_id` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`project_id`)
+  PRIMARY KEY (`project_id`),
+  KEY `producer_id` (`producer_id`),
+  CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`producer_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `projects` */
@@ -132,11 +77,16 @@ DROP TABLE IF EXISTS `recordings`;
 
 CREATE TABLE `recordings` (
   `recording_id` varchar(255) NOT NULL,
-  `project_id` varchar(255) DEFAULT NULL,
+  `project_id` varchar(255) NOT NULL,
+  `musician_id` varchar(255) NOT NULL,
   `file_path` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`recording_id`)
+  PRIMARY KEY (`recording_id`),
+  KEY `project_id` (`project_id`),
+  KEY `musician_id` (`musician_id`),
+  CONSTRAINT `recordings_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `recordings_ibfk_2` FOREIGN KEY (`musician_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `recordings` */
@@ -158,11 +108,7 @@ insert  into `sequelizemeta`(`name`) values
 ('20230520131344-create-project.js'),
 ('20230520131506-create-project-member.js'),
 ('20230520131547-create-recording.js'),
-('20230520131606-create-comment.js'),
-('20230520131625-create-music-project.js'),
-('20230520131644-create-project-musician.js'),
-('20230520131704-create-music-project-post.js'),
-('20230520131737-create-music-project-comment.js');
+('20230520131606-create-comment.js');
 
 /*Table structure for table `users` */
 
@@ -174,7 +120,8 @@ CREATE TABLE `users` (
   `password` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `role` varchar(255) DEFAULT NULL,
-  `balance` decimal(10,0) DEFAULT NULL,
+  `balance` int(11) DEFAULT NULL,
+  `api_hit` int(11) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`user_id`)
