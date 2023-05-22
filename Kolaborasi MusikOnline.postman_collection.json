@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "de0eecbc-7571-48d5-b2b2-4048ece9b5ae",
+		"name": "Kolaborasi MusikOnline",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24968335"
+	},
+	"item": [
+		{
+			"name": "Register New User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "NickDabizaz",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Nicklaus",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "nick123",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "nick123",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "nick@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
