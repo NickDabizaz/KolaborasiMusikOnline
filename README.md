@@ -1,1 +1,1 @@
-Semua isi di folder seeders di perbaiki masi error ndabisa di seeding
+ENDPOINT KURANG 7 kalo bisa yang ada hubungannya sama spotify API

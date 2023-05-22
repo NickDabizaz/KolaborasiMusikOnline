@@ -1,25 +1,36 @@
-'use strict';
+"use strict";
 
-/** @type {import('sequelize-cli').Migration} */
+const { faker } = require("@faker-js/faker");
+
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  up: async (queryInterface, Sequelize) => {
+    const comments = [];
+
+    // Generate comments
+    for (let i = 0; i < 20; i++) {
+      let commentId = i;
+      let projectId = i;
+      let commenterId = i;
+      let commentText = faker.lorem.sentence();
+      let createdAt = new Date();
+      let updatedAt = new Date();
+
+      comments.push({
+        comment_id: commentId,
+        project_id: projectId,
+        commenter_id: commenterId,
+        comment: commentText,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+      });
+    }
+
+    // Insert comments into the Comments table
+    await queryInterface.bulkInsert("Comments", comments, {});
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  }
+  down: async (queryInterface, Sequelize) => {
+    // Delete all records from the Comments table
+    await queryInterface.bulkDelete("Comments", null, {});
+  },
 };
