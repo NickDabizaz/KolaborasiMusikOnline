@@ -8,10 +8,10 @@ module.exports = {
 
     // Generate 10 projects
     for (let i = 0; i < 20; i++) {
-      let projectId = i;
+      let projectId = `P${(i + 1).toString().padStart(3, "0")}`;
       let title = faker.lorem.words(3);
       let description = faker.lorem.sentence();
-      let producerId = i;
+      let producerId = `UID${(i + 1).toString().padStart(3, "0")}`;
       let createdAt = new Date();
       let updatedAt = new Date();
 
