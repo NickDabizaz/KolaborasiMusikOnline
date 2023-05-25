@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const { faker } = require("@faker-js/faker");
 
 function getRandomRole() {
-  const roles = ["member", "musician", "producer"];
+  const roles = ["member", "musisi", "produser"];
   const randomIndex = Math.floor(Math.random() * roles.length);
   return roles[randomIndex];
 }
