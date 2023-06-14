@@ -118,6 +118,7 @@ const giveComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
   // Implementasi logika untuk menghapus komentar atau feedback
+  return res.send('ok')
 };
 
 const topUp = async (req, res) => {

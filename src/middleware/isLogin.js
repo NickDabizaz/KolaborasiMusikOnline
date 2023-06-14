@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
+const { User } = require('../models');
 
-const isLogin = (req, res, next) => {
+const isLogin = async(req, res, next) => {
   const token = req.header('x-auth-token');
 
   if (!token) {
@@ -10,8 +11,9 @@ const isLogin = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, 'PROYEKWS');
 
+    let user = await User.findOne({where:{user_id : decoded.user_id }})
     // Setel pengguna yang terautentikasi ke dalam objek request
-    req.user = decoded;
+    req.user = user;
 
     // Lanjutkan ke middleware atau handler berikutnya
     next();
