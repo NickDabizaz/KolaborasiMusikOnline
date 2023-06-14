@@ -3,8 +3,9 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models");
 const Joi = require("joi");
 const { Op } = require("sequelize");
+const { use } = require("../routes/userRoutes");
 
-const checkExistUsername = async (username) => {
+const checkUniqueUsername = async (username) => {
   let isExist = "";
 
   isExist = await User.findOne({
@@ -15,7 +16,6 @@ const checkExistUsername = async (username) => {
       },
     },
   });
-  console.log(isExist);
   if (isExist) {
     throw new Error("Username already registered");
   }
@@ -26,17 +26,20 @@ const registerUser = async (req, res) => {
     // Mendapatkan data yang dikirim dari request body
     const schema = Joi.object({
       username: Joi.string()
-        .alphanum()
         .min(4)
         .max(20)
-        .external(checkExistUsername)
+        .external(checkUniqueUsername)
         .required()
         .messages({
           "any.required": "Username is required",
+          "string.min": "Username must be at least 4 characters long",
+          "string.max": "Username must not exceed 20 characters",
         }),
 
       name: Joi.string().min(4).max(50).required().messages({
         "any.required": "Name is required",
+        "string.min": "Name must be at least 4 characters long",
+        "string.max": "Name must not exceed 50 characters",
       }),
 
       password: Joi.string().min(4).max(20).required().messages({
@@ -128,11 +131,13 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   const { username, password } = req.body;
   const schema = Joi.object({
-    username: Joi.string().email().required().messages({
-      "any.required": "email_address wajib diisi",
+    username: Joi.string().min(4).max(20).required().messages({
+      "any.required": "Username wajib diisi",
+      "string.min": "Username must be at least 4 characters long",
+      "string.max": "Username must not exceed 20 characters",
     }),
 
-    password: Joi.string().required().messages({
+    password: Joi.string().min(4).max(20).required().messages({
       "any.required": "Password wajib diisi",
     }),
   });
@@ -177,24 +182,105 @@ const loginUser = async (req, res) => {
 
 const listenToMusic = async (req, res) => {
   // Implementasi logika untuk mendengarkan musik
+  try {
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 const giveComment = async (req, res) => {
   // Implementasi logika untuk memberikan komentar atau feedback
   return res.send("ok");
+  try {
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 const deleteComment = async (req, res) => {
   // Implementasi logika untuk menghapus komentar atau feedback
   return res.send("ok");
+  try {
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 const topUp = async (req, res) => {
   // Implementasi logika untuk top up
+  try {
+    let token = req.header("x-auth-token");
+    if (!req.header("x-auth-token")) {
+      return res.status(400).send("Authentication token is missing");
+    }
+
+    let { amount } = req.body;
+    if (!amount) return res.status(400).send("Amount is required!");
+
+    let userData;
+
+    try {
+      userData = jwt.verify(token, "PROYEKWS");
+    } catch (err) {
+      return res.status(400).send("Invalid JWT Key");
+    }
+
+    let user = await User.findOne({ where: { username: userData.username } });
+
+    let curBalance = user.balance;
+
+    newBalance = Number(curBalance) + Number(amount);
+
+    let topup = User.update(
+      { balance: newBalance },
+      { where: { username: userData.username } }
+    );
+
+    return res.status(200).send({ message: "Top-up successful" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 const recharge = async (req, res) => {
   // Implementasi logika untuk recharge
+  try {
+    let token = req.header("x-auth-token");
+    if (!req.header("x-auth-token")) {
+      return res.status(400).send("Authentication token is missing");
+    }
+    let userData;
+
+    try {
+      userData = jwt.verify(token, "PROYEKWS");
+    } catch (err) {
+      return res.status(400).send("Invalid JWT Key");
+    }
+
+    let user = await User.findOne({ where: { username: userData.username } });
+
+    let curBalance = user.balance;
+    let newBalance = Number(curBalance) - 5000;
+
+    if (newBalance < 0) return res.status(400).send("Insufficent balance");
+
+    let curApi_hit = user.api_hit;
+    let newApi_hit = Number(curApi_hit) + 200;
+
+    let temp = User.update(
+      { balance: newBalance, api_hit: newApi_hit },
+      { where: { username: userData.username } }
+    );
+
+    return res.status(200).send("Recharge successful");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 module.exports = {

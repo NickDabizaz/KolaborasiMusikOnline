@@ -1,180 +1,262 @@
 {
 	"info": {
-		"_postman_id": "de0eecbc-7571-48d5-b2b2-4048ece9b5ae",
+		"_postman_id": "1d6f8156-73b3-49fb-8242-c111552a540d",
 		"name": "Kolaborasi MusikOnline",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24968335"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Register New User",
-			"event": [
+			"name": "User",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {\r",
-							"  pm.response.to.have.status(201);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response body is valid\", function () {\r",
-							"  pm.response.to.be.json;\r",
-							"\r",
-							"  const responseBody = pm.response.json();\r",
-							"\r",
-							"  pm.expect(responseBody).to.have.property(\"message\", \"User registered successfully\");\r",
-							"  pm.expect(responseBody).to.have.property(\"user\").to.be.an(\"object\");\r",
-							"\r",
-							"  const user = responseBody.user;\r",
-							"\r",
-							"  pm.expect(user).to.have.property(\"user_id\").to.be.a(\"string\");\r",
-							"  pm.expect(user).to.have.property(\"username\").to.be.a(\"string\");\r",
-							"  pm.expect(user).to.have.property(\"name\").to.be.a(\"string\");\r",
-							"  pm.expect(user).to.have.property(\"email\").to.be.a(\"string\");\r",
-							"  pm.expect(user).to.have.property(\"role\", \"member\");\r",
-							"  pm.expect(user).to.have.property(\"balance\", 0);\r",
-							"  pm.expect(user).to.have.property(\"api_hit\", 0);\r",
-							"  pm.expect(user).to.have.property(\"createdAt\").to.be.a(\"string\");\r",
-							"  pm.expect(user).to.have.property(\"updatedAt\").to.be.a(\"string\");\r",
-							"});\r",
-							""
+					"name": "Register New User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"User registered successfully\");\r",
+									"  pm.expect(responseBody).to.have.property(\"user\").to.be.an(\"object\");\r",
+									"\r",
+									"  const user = responseBody.user;\r",
+									"\r",
+									"  pm.expect(user).to.have.property(\"user_id\").to.be.a(\"string\");\r",
+									"  pm.expect(user).to.have.property(\"username\").to.be.a(\"string\");\r",
+									"  pm.expect(user).to.have.property(\"name\").to.be.a(\"string\");\r",
+									"  pm.expect(user).to.have.property(\"email\").to.be.a(\"string\");\r",
+									"  pm.expect(user).to.have.property(\"role\", \"member\");\r",
+									"  pm.expect(user).to.have.property(\"balance\", 0);\r",
+									"  pm.expect(user).to.have.property(\"api_hit\", 0);\r",
+									"  pm.expect(user).to.have.property(\"createdAt\").to.be.a(\"string\");\r",
+									"  pm.expect(user).to.have.property(\"updatedAt\").to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "testUsername",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "testing name",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "confirm_password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "testUsername",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Top-up",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
+								"type": "default"
+							}
 						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "username",
-							"value": "testUsername",
-							"type": "text"
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "100000",
+									"type": "default"
+								}
+							]
 						},
-						{
-							"key": "name",
-							"value": "testing name",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "123",
-							"type": "text"
-						},
-						{
-							"key": "confirm_password",
-							"value": "123",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "user@gmail.com",
-							"type": "text"
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/topup/UID21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"topup",
+								"UID21"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/api/v1/users/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"users",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Register Produser",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/v1/produser/register/UID021",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"produser",
-						"register",
-						"UID021"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Register Musisi",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/v1/musisi/register/UID021",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"musisi",
-						"register",
-						"UID021"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "username",
-							"value": "testUsername",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "123",
-							"type": "text"
+				{
+					"name": "Recharge",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/recharge/UID21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"recharge",
+								"UID21"
+							]
 						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/v1/users/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"users",
-						"login"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Musisi",
+			"item": [
+				{
+					"name": "Register Musisi",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/musisi/register/UID021",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"musisi",
+								"register",
+								"UID021"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produser",
+			"item": [
+				{
+					"name": "Register Produser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/produser/register/UID021",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"produser",
+								"register",
+								"UID021"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
