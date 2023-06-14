@@ -1,27 +1,74 @@
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const { User } = require("../models");
+const Joi = require("joi");
+
+const checkExistUsername = async (username) => {
+  let isExist = "";
+
+  isExist = await User.findOne({
+    attributes: ["username"],
+    where: {
+      username: {
+        [Op.like]: username,
+      },
+    },
+  });
+  if (!isExist) {
+    throw new Error("user tidak terdaftar");
+  }
+};
 
 const registerUser = async (req, res) => {
   try {
     // Mendapatkan data yang dikirim dari request body
-    const { username, name, password, confirm_password, email } = req.body;
+    const schema = Joi.object({
+      username: Joi.string()
+        .alphanum()
+        .min(4)
+        .max(20)
+        .external(checkExistUsername)
+        .required()
+        .messages({
+          "any.required": "Username is required",
+        }),
+
+      name: Joi.string().min(4).max(50).required().messages({
+        "any.required": "Name is required",
+      }),
+
+      password: Joi.string().min(4).max(20).required().messages({
+        "any.required": "Password is required",
+      }),
+
+      confirm_password: Joi.string()
+        .min(4)
+        .max(20)
+        .valid(Joi.ref("password"))
+        .required()
+        .messages({
+          "any.required": "Confirm_password is required",
+          "any.only": "Passwords do not match",
+        }),
+
+      email: Joi.string().email().required().messages({
+        "any.required": "Email is required",
+      }),
+    });
+
+    let user = {
+      ...req.body,
+    };
 
     // Memeriksa apakah semua field sudah diisi
-    if (!username || !name || !password || !confirm_password || !email) {
+    if (
+      !user.username ||
+      !user.name ||
+      !user.password ||
+      !user.confirm_password ||
+      !user.email
+    ) {
       return res.status(400).json({ error: "All fields are required" });
-    }
-
-    // Memeriksa apakah password dan konfirmasi password sama
-    if (password !== confirm_password) {
-      return res
-        .status(400)
-        .json({ error: "Password and confirm password do not match" });
-    }
-
-    // Memeriksa apakah email memiliki format yang valid
-    if (!email.includes("@") || !email.includes(".")) {
-      return res.status(400).json({ error: "Invalid email format" });
     }
 
     // Memeriksa apakah username sudah digunakan
@@ -74,9 +121,17 @@ const registerUser = async (req, res) => {
   }
 };
 
-
 const loginUser = async (req, res) => {
   const { username, password } = req.body;
+  const schema = Joi.object({
+    username: Joi.string().email().required().messages({
+      "any.required": "email_address wajib diisi",
+    }),
+
+    password: Joi.string().required().messages({
+      "any.required": "Password wajib diisi",
+    }),
+  });
 
   try {
     // Cari pengguna berdasarkan username
@@ -84,7 +139,9 @@ const loginUser = async (req, res) => {
 
     // Jika pengguna tidak ditemukan, kirim pesan error
     if (!user) {
-      return res.status(401).json({ error: 'Username or password is incorrect' });
+      return res
+        .status(401)
+        .json({ error: "Username or password is incorrect" });
     }
 
     // Verifikasi password pengguna
@@ -92,21 +149,28 @@ const loginUser = async (req, res) => {
 
     // Jika password tidak valid, kirim pesan error
     if (!isPasswordValid) {
-      return res.status(401).json({ error: 'Username or password is incorrect' });
+      return res
+        .status(401)
+        .json({ error: "Username or password is incorrect" });
     }
 
     // Buat token JWT dengan payload pengguna
-    const token = jwt.sign({ user_id: user.user_id, username: user.username }, 'PROYEKWS', {
-      expiresIn: '3600s' // Durasi token berlaku (opsional)
-    });
+    const token = jwt.sign(
+      { user_id: user.user_id, username: user.username },
+      "PROYEKWS",
+      {
+        expiresIn: "3600s", // Durasi token berlaku (opsional)
+      }
+    );
 
     // Kirim token sebagai respons
-    return res.json({ message: 'Login Succes',token });
+    return res.json({ message: "Login Succes", token });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
+
 const listenToMusic = async (req, res) => {
   // Implementasi logika untuk mendengarkan musik
 };
