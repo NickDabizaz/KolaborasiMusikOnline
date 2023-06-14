@@ -113,6 +113,7 @@ const listenToMusic = async (req, res) => {
 
 const giveComment = async (req, res) => {
   // Implementasi logika untuk memberikan komentar atau feedback
+  return res.send('ok')
 };
 
 const deleteComment = async (req, res) => {
