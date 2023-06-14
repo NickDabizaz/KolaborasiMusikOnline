@@ -8,6 +8,41 @@
 	"item": [
 		{
 			"name": "Register New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is valid\", function () {\r",
+							"  pm.response.to.be.json;\r",
+							"\r",
+							"  const responseBody = pm.response.json();\r",
+							"\r",
+							"  pm.expect(responseBody).to.have.property(\"message\", \"User registered successfully\");\r",
+							"  pm.expect(responseBody).to.have.property(\"user\").to.be.an(\"object\");\r",
+							"\r",
+							"  const user = responseBody.user;\r",
+							"\r",
+							"  pm.expect(user).to.have.property(\"user_id\").to.be.a(\"string\");\r",
+							"  pm.expect(user).to.have.property(\"username\").to.be.a(\"string\");\r",
+							"  pm.expect(user).to.have.property(\"name\").to.be.a(\"string\");\r",
+							"  pm.expect(user).to.have.property(\"email\").to.be.a(\"string\");\r",
+							"  pm.expect(user).to.have.property(\"role\", \"member\");\r",
+							"  pm.expect(user).to.have.property(\"balance\", 0);\r",
+							"  pm.expect(user).to.have.property(\"api_hit\", 0);\r",
+							"  pm.expect(user).to.have.property(\"createdAt\").to.be.a(\"string\");\r",
+							"  pm.expect(user).to.have.property(\"updatedAt\").to.be.a(\"string\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -16,27 +51,27 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "NickDabizaz",
+							"value": "testUsername",
 							"type": "text"
 						},
 						{
 							"key": "name",
-							"value": "Nicklaus",
+							"value": "testing name",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "nick123",
+							"value": "123",
 							"type": "text"
 						},
 						{
 							"key": "confirm_password",
-							"value": "nick123",
+							"value": "123",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "nick@gmail.com",
+							"value": "user@gmail.com",
 							"type": "text"
 						}
 					]
@@ -53,6 +88,52 @@
 						"v1",
 						"users",
 						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Produser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/produser/register/UID021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"produser",
+						"register",
+						"UID021"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Musisi",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/musisi/register/UID021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"musisi",
+						"register",
+						"UID021"
 					]
 				}
 			},

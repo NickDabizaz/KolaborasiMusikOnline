@@ -10,7 +10,7 @@ const registerProduser = async (req, res) => {
       { where: { user_id } } // Kondisi untuk menemukan pengguna yang akan diupdate
     );
 
-    if (!result) {
+    if (result[0] === 0) {
       return res.status(404).json({ error: "User not found" });
     }
 
