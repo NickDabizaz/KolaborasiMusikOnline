@@ -12,7 +12,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.get('/listen/:recording_id', listenToMusic);
 router.post('/comment',[isLogin], giveComment);
-router.delete('/comment/:comment_id',[isLogin, checkRole("produser")], deleteComment);
+router.delete('/comment/:comment_id',[isLogin, checkRole], deleteComment);
 router.put('/topup/:user_id',[isLogin], topUp);
 router.put('/recharge/:user_id',[isLogin], recharge);
 
