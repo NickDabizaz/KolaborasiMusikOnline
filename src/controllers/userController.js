@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 const { User } = require("../models");
 
 const registerUser = async (req, res) => {
@@ -75,9 +76,37 @@ const registerUser = async (req, res) => {
 
 
 const loginUser = async (req, res) => {
-  // Implementasi logika untuk login user
-};
+  const { username, password } = req.body;
 
+  try {
+    // Cari pengguna berdasarkan username
+    const user = await User.findOne({ where: { username } });
+
+    // Jika pengguna tidak ditemukan, kirim pesan error
+    if (!user) {
+      return res.status(401).json({ error: 'Username or password is incorrect' });
+    }
+
+    // Verifikasi password pengguna
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    // Jika password tidak valid, kirim pesan error
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Username or password is incorrect' });
+    }
+
+    // Buat token JWT dengan payload pengguna
+    const token = jwt.sign({ user_id: user.user_id, username: user.username }, 'PROYEKWS', {
+      expiresIn: '3600s' // Durasi token berlaku (opsional)
+    });
+
+    // Kirim token sebagai respons
+    return res.json({ message: 'Login Succes',token });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
 const listenToMusic = async (req, res) => {
   // Implementasi logika untuk mendengarkan musik
 };
