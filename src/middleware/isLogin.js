@@ -1,5 +1,5 @@
-const isLogin = () => {};
-
-module.exports = {
-  isLogin,
+const isLogin = (req,res,next) => {
+    next()
 };
+
+module.exports = isLogin;

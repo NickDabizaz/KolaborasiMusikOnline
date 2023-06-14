@@ -5,4 +5,4 @@ Note :
 
 ASUMSI :
 token jwt nya = PROJEKWS
-header buat authentication / authorization nya kita pake Bearer token aja
+header buat authentication / authorization nya kita pake header('x-auth-token')

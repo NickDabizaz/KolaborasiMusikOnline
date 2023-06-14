@@ -1,5 +1,7 @@
-const checkRole = () => {};
-
-module.exports = {
-  checkRole,
+const checkRole = (...roles) => {
+  return (req, res, next) => {
+      next();
+  };
 };
+
+module.exports = checkRole;
