@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
 const Joi = require("joi");
+const { Op } = require("sequelize");
 
 const checkExistUsername = async (username) => {
   let isExist = "";
@@ -14,8 +15,9 @@ const checkExistUsername = async (username) => {
       },
     },
   });
-  if (!isExist) {
-    throw new Error("user tidak terdaftar");
+  console.log(isExist);
+  if (isExist) {
+    throw new Error("Username already registered");
   }
 };
 
@@ -39,6 +41,8 @@ const registerUser = async (req, res) => {
 
       password: Joi.string().min(4).max(20).required().messages({
         "any.required": "Password is required",
+        "string.min": "Password must be at least 4 characters long",
+        "string.max": "Password must not exceed 20 characters",
       }),
 
       confirm_password: Joi.string()
@@ -56,6 +60,12 @@ const registerUser = async (req, res) => {
       }),
     });
 
+    try {
+      await schema.validateAsync(req.body);
+    } catch (error) {
+      return res.status(400).send(error.message.toString());
+    }
+
     let user = {
       ...req.body,
     };
@@ -71,18 +81,12 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Memeriksa apakah username sudah digunakan
-    const existingUser = await User.findOne({ where: { username } });
-    if (existingUser) {
-      return res.status(400).json({ error: "Username already exists" });
-    }
-
     const maxId = await User.max("user_id");
     const urutan = maxId ? Number(maxId.substr(3, 3)) + 1 : 1;
     const user_id = `UID${urutan.toString().padStart(3, "0")}`;
 
     // Mengenkripsi password sebelum disimpan ke database
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(user.password, 10);
 
     // Membuat tanggal dan waktu saat ini
     const currentDate = new Date();
@@ -90,10 +94,10 @@ const registerUser = async (req, res) => {
     // Menambahkan data user ke dalam tabel Users
     await User.create({
       user_id,
-      username,
-      name,
+      username: user.username,
+      name: user.name,
       password: hashedPassword,
-      email,
+      email: user.email,
       role: "member",
       balance: 0,
       api_hit: 0,
@@ -105,9 +109,9 @@ const registerUser = async (req, res) => {
       message: "User registered successfully",
       user: {
         user_id,
-        username,
-        name,
-        email,
+        username: user.username,
+        name: user.username,
+        email: user.email,
         role: "member",
         balance: 0,
         api_hit: 0,
@@ -177,12 +181,12 @@ const listenToMusic = async (req, res) => {
 
 const giveComment = async (req, res) => {
   // Implementasi logika untuk memberikan komentar atau feedback
-  return res.send('ok')
+  return res.send("ok");
 };
 
 const deleteComment = async (req, res) => {
   // Implementasi logika untuk menghapus komentar atau feedback
-  return res.send('ok')
+  return res.send("ok");
 };
 
 const topUp = async (req, res) => {
