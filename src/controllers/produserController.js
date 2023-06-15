@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { User } = require("../models");
 const { Project } = require("../models");
 
@@ -66,8 +67,64 @@ const inviteMusisi = async (req, res) => {
 };
 
 const deleteProjectPost = async (req, res) => {
-  // Implementasi logika untuk menghapus postingan proyek musik
+  const { project_id } = req.params;
+
+  try {
+    const deletedProject = await Project.destroy({
+      where: { project_id: project_id },
+    });
+
+    if (deletedProject === 0) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    return res.json({ message: 'Project post successfully deleted' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 };
+
+const searchProject = async (req, res) => {
+  const { q, page, limit, sort } = req.query;
+  const pageNumber = parseInt(page) || 1;
+  const pageSize = parseInt(limit) || 10;
+  const sortBy = sort || 'createdAt';
+
+  try {
+    let conditions = {};
+
+    if (q) {
+      conditions = {
+        [Op.or]: [
+          { title: { [Op.like]: `%${q}%` } },
+          { description: { [Op.like]: `%${q}%` } },
+        ],
+      };
+    }
+
+    const totalCount = await Project.count({ where: conditions });
+    const totalPages = Math.ceil(totalCount / pageSize);
+
+    const projects = await Project.findAll({
+      where: conditions,
+      order: [[sortBy, 'ASC']],
+      offset: (pageNumber - 1) * pageSize,
+      limit: pageSize,
+    });
+
+    return res.json({
+      page: pageNumber,
+      total_pages: totalPages,
+      total_results: totalCount,
+      projects,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Terjadi kesalahan server' });
+  }
+};
+
 
 module.exports = {
   registerProduser,
@@ -75,4 +132,5 @@ module.exports = {
   searchMusisi,
   inviteMusisi,
   deleteProjectPost,
+  searchProject
 };

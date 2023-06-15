@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1d6f8156-73b3-49fb-8242-c111552a540d",
+		"_postman_id": "681957a1-199d-4d9c-befe-50e67bf5534e",
 		"name": "Kolaborasi MusikOnline",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24968335"
 	},
 	"item": [
 		{
@@ -251,6 +252,112 @@
 								"produser",
 								"register",
 								"UID021"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4MzcwMDMsImV4cCI6MTY4Njg0MDYwM30.fZCCI6yz9jcTicCU9Xu5nDGfO40LFhCMx2Wsr1wSlqE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "New Testing Project",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque iste dolorum ullam necessitatibus distinctio facilis dignissimos soluta est harum optio magnam, sint quia eligendi error sunt, laudantium ipsam, quae delectus.lorem",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/produser/project",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"produser",
+								"project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4MzcwMDMsImV4cCI6MTY4Njg0MDYwM30.fZCCI6yz9jcTicCU9Xu5nDGfO40LFhCMx2Wsr1wSlqE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/produser/project/P021",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"produser",
+								"project",
+								"P021"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Projects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4MzcwMDMsImV4cCI6MTY4Njg0MDYwM30.fZCCI6yz9jcTicCU9Xu5nDGfO40LFhCMx2Wsr1wSlqE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/produser/project?page1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"produser",
+								"project"
+							],
+							"query": [
+								{
+									"key": "page1",
+									"value": null
+								}
 							]
 						}
 					},

@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models");
 const Joi = require("joi");
 const { Op } = require("sequelize");
-const { use } = require("../routes/userRoutes");
 
 const checkUniqueUsername = async (username) => {
   let isExist = "";
