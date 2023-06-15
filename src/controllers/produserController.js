@@ -71,7 +71,6 @@ const createProject = async (req, res) => {
   }
 };
 
-
 const searchMusisi = async (req, res) => {
   // Implementasi logika untuk mencari musisi untuk proyek
 };
