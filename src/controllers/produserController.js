@@ -125,7 +125,6 @@ const inviteMusisi = async (req, res) => {
   }
 };
 
-
 const deleteProjectPost = async (req, res) => {
   const { project_id } = req.params;
 

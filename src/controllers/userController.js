@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User } = require("../models");
+const { User, Project, Comment } = require("../models");
 const Joi = require("joi");
 const { Op } = require("sequelize");
 
@@ -72,17 +72,6 @@ const registerUser = async (req, res) => {
       ...req.body,
     };
 
-    // Memeriksa apakah semua field sudah diisi
-    if (
-      !user.username ||
-      !user.name ||
-      !user.password ||
-      !user.confirm_password ||
-      !user.email
-    ) {
-      return res.status(400).json({ error: "All fields are required" });
-    }
-
     const maxId = await User.max("user_id");
     const urutan = maxId ? Number(maxId.substr(3, 3)) + 1 : 1;
     const user_id = `UID${urutan.toString().padStart(3, "0")}`;
@@ -131,14 +120,14 @@ const loginUser = async (req, res) => {
   const { username, password } = req.body;
   const schema = Joi.object({
     username: Joi.string().min(4).max(20).required().messages({
+      "any.required": "Username is required",
       "string.empty": "Username is required",
       "string.min": "Username must be at least 4 characters long",
       "string.max": "Username must not exceed 20 characters",
     }),
-    password: Joi.string().min(4).max(20).required().messages({
+    password: Joi.string().required().messages({
+      "any.required": "Password is required",
       "string.empty": "Password is required",
-      "string.min": "Password must be at least 4 characters long",
-      "string.max": "Password must not exceed 20 characters",
     }),
   });
 
@@ -153,13 +142,17 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ where: { username } });
 
     if (!user) {
-      return res.status(401).json({ error: "Username or password is incorrect" });
+      return res
+        .status(401)
+        .json({ error: "Username or password is incorrect" });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ error: "Username or password is incorrect" });
+      return res
+        .status(401)
+        .json({ error: "Username or password is incorrect" });
     }
 
     const token = jwt.sign(
@@ -185,9 +178,40 @@ const listenToMusic = async (req, res) => {
 };
 
 const giveComment = async (req, res) => {
-  // Implementasi logika untuk memberikan komentar atau feedback
-  return res.send("ok");
   try {
+    let token = req.header("x-auth-token");
+    if (!token) {
+      return res.status(400).send("Authentication token is missing");
+    }
+
+    let { project_id } = req.params;
+
+    let project = await Project.findOne({ where: { project_id } });
+    if (!project) return res.status(404).send("Project not found");
+
+    let { comment } = req.body;
+    if (!comment) return res.status(400).send("Comment cannot be blank!");
+
+    let userData;
+
+    try {
+      userData = jwt.verify(token, "PROYEKWS");
+    } catch (err) {
+      return res.status(400).send("Invalid JWT Key");
+    }
+
+    const maxId = await Comment.max("comment_id");
+    const urutan = maxId ? Number(maxId.substr(1, 3)) + 1 : 1;
+    const comment_id = `C${urutan.toString().padStart(3, "0")}`;
+
+    let temp = Comment.create({
+      comment_id,
+      project_id,
+      commenter_id: userData.user_id,
+      comment,
+    });
+
+    return res.status(200).send("Comment posted!");
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -195,9 +219,31 @@ const giveComment = async (req, res) => {
 };
 
 const deleteComment = async (req, res) => {
-  // Implementasi logika untuk menghapus komentar atau feedback
-  return res.send("ok");
   try {
+    let token = req.header("x-auth-token");
+    if (!token) {
+      return res.status(400).send("Authentication token is missing");
+    }
+
+    let { comment_id } = req.params;
+
+    let comment = await Project.findOne({ where: { comment_id } });
+    if (!comment) return res.status(404).send("Comment not found");
+
+    let userData;
+
+    if (comment.commenter_id != userData.user_id)
+      return res.status(401).send("Cannot delete another user comment!");
+
+    try {
+      userData = jwt.verify(token, "PROYEKWS");
+    } catch (err) {
+      return res.status(400).send("Invalid JWT Key");
+    }
+
+    let temp = await Comment.destroy({ where: { comment_id } });
+
+    return res.status(200).send("Successfully deleted comment!");
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -208,7 +254,7 @@ const topUp = async (req, res) => {
   // Implementasi logika untuk top up
   try {
     let token = req.header("x-auth-token");
-    if (!req.header("x-auth-token")) {
+    if (!token) {
       return res.status(400).send("Authentication token is missing");
     }
 
