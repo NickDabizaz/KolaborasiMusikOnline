@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { User } = require("../models");
+const { User, ProjectMember } = require("../models");
 const { Project } = require("../models");
 
 const registerProduser = async (req, res) => {
@@ -63,8 +63,55 @@ const searchMusisi = async (req, res) => {
 };
 
 const inviteMusisi = async (req, res) => {
-  // Implementasi logika untuk mengundang musisi untuk proyek
+  const { project_id, user_id } = req.body;
+
+  try {
+    const project = await Project.findOne({
+      where: { project_id },
+    });
+
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const user = await User.findOne({
+      where: { user_id },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    if (user.role !== 'musisi') {
+      return res.status(400).json({ error: 'The user is not a musician' });
+    }
+
+    const lastProjectMember = await ProjectMember.findOne({
+      order: [['project_member_id', 'DESC']],
+    });
+
+    let newId = 'M001'; // Default ID jika belum ada entri dalam tabel
+
+    if (lastProjectMember) {
+      const lastId = lastProjectMember.project_member_id;
+      const lastNumericPart = parseInt(lastId.substring(1));
+      const newNumericPart = (lastNumericPart + 1).toString().padStart(3, '0');
+      newId = 'M' + newNumericPart;
+    }
+
+    await ProjectMember.create({
+      project_member_id: newId,
+      project_id,
+      musician_id: user_id,
+    });
+
+    return res.json({ message: 'The musician has been successfully invited to the project' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
+
 
 const deleteProjectPost = async (req, res) => {
   const { project_id } = req.params;

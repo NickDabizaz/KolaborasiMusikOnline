@@ -54,7 +54,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "testUsername",
+									"value": "testUsername2",
 									"type": "text"
 								},
 								{
@@ -64,12 +64,12 @@
 								},
 								{
 									"key": "password",
-									"value": "123",
+									"value": "1234",
 									"type": "text"
 								},
 								{
 									"key": "confirm_password",
-									"value": "123",
+									"value": "1234",
 									"type": "text"
 								},
 								{
@@ -111,7 +111,7 @@
 								},
 								{
 									"key": "password",
-									"value": "123",
+									"value": "1234",
 									"type": "text"
 								}
 							]
@@ -212,7 +212,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/register/UID021",
+							"raw": "http://localhost:3000/api/v1/musisi/register/UID022",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -223,7 +223,7 @@
 								"v1",
 								"musisi",
 								"register",
-								"UID021"
+								"UID022"
 							]
 						}
 					},
@@ -264,7 +264,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4MzcwMDMsImV4cCI6MTY4Njg0MDYwM30.fZCCI6yz9jcTicCU9Xu5nDGfO40LFhCMx2Wsr1wSlqE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4Mzg3ODIsImV4cCI6MTY4Njg0MjM4Mn0.HAtdV4hj4Mm6ebOKMlZYJNYAcHrFhL5bXbydQdApGDI",
 								"type": "text"
 							}
 						],
@@ -358,6 +358,49 @@
 									"key": "page1",
 									"value": null
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invite Musisi",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4Mzg3ODIsImV4cCI6MTY4Njg0MjM4Mn0.HAtdV4hj4Mm6ebOKMlZYJNYAcHrFhL5bXbydQdApGDI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "project_id",
+									"value": "P021",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "UID022",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/produser/invite",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"produser",
+								"invite"
 							]
 						}
 					},
