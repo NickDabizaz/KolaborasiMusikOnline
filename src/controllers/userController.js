@@ -131,48 +131,44 @@ const loginUser = async (req, res) => {
   const { username, password } = req.body;
   const schema = Joi.object({
     username: Joi.string().min(4).max(20).required().messages({
-      "any.required": "Username wajib diisi",
+      "string.empty": "Username is required",
       "string.min": "Username must be at least 4 characters long",
       "string.max": "Username must not exceed 20 characters",
     }),
-
     password: Joi.string().min(4).max(20).required().messages({
-      "any.required": "Password wajib diisi",
+      "string.empty": "Password is required",
+      "string.min": "Password must be at least 4 characters long",
+      "string.max": "Password must not exceed 20 characters",
     }),
   });
 
   try {
-    // Cari pengguna berdasarkan username
+    const validation = schema.validate(req.body, { abortEarly: false });
+
+    if (validation.error) {
+      const errors = validation.error.details.map((err) => err.message);
+      return res.status(400).json({ errors });
+    }
+
     const user = await User.findOne({ where: { username } });
 
-    // Jika pengguna tidak ditemukan, kirim pesan error
     if (!user) {
-      return res
-        .status(401)
-        .json({ error: "Username or password is incorrect" });
+      return res.status(401).json({ error: "Username or password is incorrect" });
     }
 
-    // Verifikasi password pengguna
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    // Jika password tidak valid, kirim pesan error
     if (!isPasswordValid) {
-      return res
-        .status(401)
-        .json({ error: "Username or password is incorrect" });
+      return res.status(401).json({ error: "Username or password is incorrect" });
     }
 
-    // Buat token JWT dengan payload pengguna
     const token = jwt.sign(
       { user_id: user.user_id, username: user.username },
       "PROYEKWS",
-      {
-        expiresIn: "3600s", // Durasi token berlaku (opsional)
-      }
+      { expiresIn: "3600s" }
     );
 
-    // Kirim token sebagai respons
-    return res.json({ message: "Login Succes", token });
+    return res.json({ message: "Login success", token });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
