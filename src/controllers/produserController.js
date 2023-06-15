@@ -24,39 +24,53 @@ const registerProduser = async (req, res) => {
 };
 
 const createProject = async (req, res) => {
-  let { title, description } = req.body;
-  let producer_id = req.user.user_id;
+  const { title, description } = req.body;
+  const producer_id = req.user.user_id;
 
   if (!title || !description || !producer_id) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  let projectamount = await Project.findAll();
-  let newID = `P${(projectamount.length + 1).toString().padStart(3, '0')}`
+  try {
+    const lastProject = await Project.findOne({
+      order: [["project_id", "DESC"]],
+    });
 
-  const currentDate = new Date();
+    let lastID = 0;
+    if (lastProject) {
+      lastID = parseInt(lastProject.project_id.substring(1));
+    }
 
-  let createproject = await Project.create({
-    project_id : newID,
-    title,
-    description,
-    poster_path : null,
-    producer_id,
-    createdAt: currentDate,
-    updatedAt: currentDate,
-  });
+    const newID = `P${(lastID + 1).toString().padStart(3, "0")}`;
 
-  return res.status(201).send({
-    message: "Project registered successfully",
-    project_id : newID,
-    title,
-    description,
-    poster_path : null,
-    producer_id,
-    createdAt: currentDate,
-    updatedAt: currentDate,
-  });
+    const currentDate = new Date();
+
+    const createProject = await Project.create({
+      project_id: newID,
+      title,
+      description,
+      poster_path: null,
+      producer_id,
+      createdAt: currentDate,
+      updatedAt: currentDate,
+    });
+
+    return res.status(201).json({
+      message: "Project registered successfully",
+      project_id: createProject.project_id,
+      title,
+      description,
+      poster_path: null,
+      producer_id,
+      createdAt: currentDate,
+      updatedAt: currentDate,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
+
 
 const searchMusisi = async (req, res) => {
   // Implementasi logika untuk mencari musisi untuk proyek
