@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Import produser controller
-const { registerProduser, createProject, searchMusisi, inviteMusisi, deleteProjectPost, searchProject } = require('../controllers/produserController');
+const { registerProduser, createProject, searchMusisi, inviteMusisi, deleteProjectPost, searchProject, uploadPoster } = require('../controllers/produserController');
 
 const isLogin = require('../middleware/isLogin');
 const checkRole = require('../middleware/checkRole');
@@ -14,5 +14,6 @@ router.get('/search',[isLogin, checkRole("produser")], searchMusisi);
 router.get('/project',[isLogin, checkRole("produser", "musisi", "member")], searchProject);
 router.post('/invite',[isLogin, checkRole("produser")], inviteMusisi);
 router.delete('/project/:project_id',[isLogin, checkRole("produser")], deleteProjectPost);
+router.post("/uploadPoster", [isLogin, checkRole("produser")], uploadPoster)
 
 module.exports = router;

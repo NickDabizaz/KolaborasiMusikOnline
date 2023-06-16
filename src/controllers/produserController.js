@@ -207,11 +207,17 @@ const searchProject = async (req, res) => {
 };
 
 
+const uploadPoster = async (req, res) => {
+  // Implementasi logika untuk mengupload poster
+};
+
+
 module.exports = {
   registerProduser,
   createProject,
   searchMusisi,
   inviteMusisi,
   deleteProjectPost,
-  searchProject
+  searchProject,
+  uploadPoster
 };
