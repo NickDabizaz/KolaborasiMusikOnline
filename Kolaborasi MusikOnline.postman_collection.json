@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ab8b82b7-eecf-49dd-835f-b814403a2e54",
+		"_postman_id": "ca6a8e6f-cb07-4541-add4-b661b6622614",
 		"name": "Kolaborasi MusikOnline",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -335,7 +335,13 @@
 					"name": "Register Produser",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY5MDcyNTIsImV4cCI6MTY4NjkxMDg1Mn0.F3MRWFcCnFUKiZfU4UsM5k66nOKz_WKbUHzT8EJjoOs",
+								"type": "default"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/produser/register/UID021",
 							"protocol": "http",
@@ -498,6 +504,28 @@
 								"v1",
 								"produser",
 								"invite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Musisi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/produser/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"produser",
+								"search"
 							]
 						}
 					},

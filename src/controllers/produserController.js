@@ -73,6 +73,28 @@ const createProject = async (req, res) => {
 
 const searchMusisi = async (req, res) => {
   // Implementasi logika untuk mencari musisi untuk proyek
+  try {
+    const musisi = await User.findAll({
+      where: { role: 'musisi' },
+      attributes: ['name'],
+      include: [
+        {
+          model: Project,
+          as: 'projects',
+          attributes: ['title', 'description'],
+          through: {
+            model: ProjectMember,
+            attributes: [],
+          },
+        },
+      ],
+    });
+
+    res.status(200).json(musisi);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };
 
 const inviteMusisi = async (req, res) => {
