@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ca6a8e6f-cb07-4541-add4-b661b6622614",
+		"_postman_id": "829f55d8-29a7-4f01-b6bd-a42dbe921945",
 		"name": "Kolaborasi MusikOnline",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -528,6 +528,26 @@
 								"search"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadPoster",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPoster",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
