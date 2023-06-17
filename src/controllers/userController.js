@@ -324,6 +324,18 @@ const recharge = async (req, res) => {
   }
 };
 
+const getComments =async (req, res) => { 
+  //implementasi logika get comments
+  // bisa get all bisa di query ?keyword=
+ }
+
+ const getDetailComment = async(req,res,next) => { 
+  //implementasi logika get detail comment
+  // siapa yang punya comment
+  // comment dari project apa
+  }
+ 
+
 module.exports = {
   registerUser,
   loginUser,
@@ -332,4 +344,6 @@ module.exports = {
   deleteComment,
   topUp,
   recharge,
+  getComments,
+  getDetailComment
 };
