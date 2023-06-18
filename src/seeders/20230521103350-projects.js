@@ -12,7 +12,6 @@ module.exports = {
       let title = faker.lorem.words(3);
       let description = faker.lorem.sentence();
       let producerId = `UID${(i + 1).toString().padStart(3, "0")}`;
-      let poster_path = faker.system.filePath();
       let createdAt = new Date();
       let updatedAt = new Date();
 
@@ -20,7 +19,6 @@ module.exports = {
         project_id: projectId,
         title: title,
         description: description,
-        poster_path,
         producer_id: producerId,
         createdAt: createdAt,
         updatedAt: updatedAt,

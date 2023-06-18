@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f1cd4316-b475-4ced-b09c-f64edb98d5ec",
+		"_postman_id": "531f1ddf-3c56-4145-b151-02cb16e1c6b1",
 		"name": "Kolaborasi MusikOnline",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24968335"
 	},
 	"item": [
 		{
@@ -53,12 +54,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "testMusisi",
+									"value": "testUsername",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "user musisi",
+									"value": "user name",
 									"type": "text"
 								},
 								{
@@ -105,7 +106,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "testMusisi",
+									"value": "testUsername",
 									"type": "text"
 								},
 								{
@@ -538,7 +539,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpMiIsImlhdCI6MTY4NzA5MzMzNiwiZXhwIjoxNjg3MDk2OTM2fQ.3PavAFNyaOYZZmjcR4C5H7kZc1vS-S7dNvOgVE_Uk5E",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
 								"type": "text"
 							}
 						],
@@ -566,7 +567,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4Mzk3NzQsImV4cCI6MTY4Njg0MzM3NH0.NpjC7SVIwhaRIvzifSghywoLGjI2T0q0m1QMm4SYwpQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
 								"type": "text"
 							}
 						],
@@ -575,7 +576,7 @@
 							"urlencoded": [
 								{
 									"key": "title",
-									"value": "New Testing Project",
+									"value": "New Testing Project2",
 									"type": "text"
 								},
 								{
@@ -638,12 +639,12 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4MzcwMDMsImV4cCI6MTY4Njg0MDYwM30.fZCCI6yz9jcTicCU9Xu5nDGfO40LFhCMx2Wsr1wSlqE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/project?page1",
+							"raw": "http://localhost:3000/api/v1/produser/project",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -654,12 +655,6 @@
 								"v1",
 								"produser",
 								"project"
-							],
-							"query": [
-								{
-									"key": "page1",
-									"value": null
-								}
 							]
 						}
 					},
@@ -715,7 +710,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDA4NTQsImV4cCI6MTY4NzEwNDQ1NH0.8rA8cdod4cC9MYaERoNJKkHSKiX7ZPBpNK4GVB_E9yg",
 								"type": "default"
 							}
 						],
@@ -723,14 +718,14 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "produser",
-									"value": "rama",
+									"key": "project_id",
+									"value": "P0223",
 									"type": "text"
 								},
 								{
 									"key": "poster",
 									"type": "file",
-									"src": "/D:/campuran/instagram pp/1681367985_6437a3b1c80be_3PIsFnFHZ05xHEUqvE28.jpg"
+									"src": "/C:/Users/Nicklaus/Downloads/kobo.jpg"
 								}
 							]
 						},
@@ -757,7 +752,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/poster?produser=rama",
+							"raw": "http://localhost:3000/api/v1/produser/poster/P0223",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -767,13 +762,8 @@
 								"api",
 								"v1",
 								"produser",
-								"poster"
-							],
-							"query": [
-								{
-									"key": "produser",
-									"value": "rama"
-								}
+								"poster",
+								"P0223"
 							]
 						}
 					},

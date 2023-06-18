@@ -13,8 +13,8 @@ router.post('/project',[isLogin, checkRole("produser")], createProject);
 router.get('/search',[isLogin, checkRole("produser")], searchMusisi);
 router.get('/project',[isLogin, checkRole("produser", "musisi", "member")], searchProject);
 router.post('/invite',[isLogin, checkRole("produser")], inviteMusisi);
-router.delete('/project/:project_id',[isLogin, checkRole("produser")], deleteProjectPost);
-router.post("/uploadPoster", [isLogin, checkRole("produser")], uploadPoster)
-router.get("/poster", getPoster)
+router.delete('/project/:project_id',[isLogin,checkRole("produser")], deleteProjectPost);
+router.post("/uploadPoster", [isLogin], uploadPoster)
+router.get("/poster/:project_id", getPoster)
 
 module.exports = router;

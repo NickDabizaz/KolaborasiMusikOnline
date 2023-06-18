@@ -14,9 +14,6 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      poster_path: {
-        type: Sequelize.STRING
-      },
       producer_id: {
         type: Sequelize.STRING,
         allowNull: false,
