@@ -11,7 +11,7 @@ const {
   topUp,
   recharge,
   getComments,
-  getUserComment
+  getUserComment,
 } = require("../controllers/userController");
 
 const isLogin = require("../middleware/isLogin");
@@ -21,13 +21,9 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/listen/:recording_id", listenToMusic);
 router.post("/comment/:project_id", [isLogin], giveComment);
-router.delete(
-  "/comment/:comment_id",
-  [isLogin, checkRole("musisi", "produser")],
-  deleteComment
-);
-router.get('/comment', getComments)
-router.get('/comment/:user_id',[isLogin], getUserComment)
+router.delete("/comment/:comment_id", [isLogin], deleteComment);
+router.get("/comment", getComments);
+router.get("/comment/:user_id", [isLogin], getUserComment);
 router.put("/topup/:user_id", [isLogin], topUp);
 router.put("/recharge/:user_id", [isLogin], recharge);
 

@@ -174,11 +174,11 @@ const listenToMusic = async (req, res) => {
   try {
     const recording = await Recording.findOne({
       where: { recording_id },
-      attributes: ['title', 'song_url'],
+      attributes: ["title", "song_url"],
     });
 
     if (!recording) {
-      return res.status(404).json({ error: 'Recording not found' });
+      return res.status(404).json({ error: "Recording not found" });
     }
 
     return res.json({
@@ -187,10 +187,9 @@ const listenToMusic = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
-
 
 const giveComment = async (req, res) => {
   try {
@@ -198,17 +197,17 @@ const giveComment = async (req, res) => {
 
     const project = await Project.findOne({ where: { project_id } });
     if (!project) {
-      return res.status(404).json({ error: 'Project not found' });
+      return res.status(404).json({ error: "Project not found" });
     }
 
     const { comment } = req.body;
     if (!comment) {
-      return res.status(400).json({ error: 'Comment cannot be blank' });
+      return res.status(400).json({ error: "Comment cannot be blank" });
     }
 
-    const maxId = await Comment.max('comment_id');
+    const maxId = await Comment.max("comment_id");
     const sequenceNumber = maxId ? Number(maxId.substr(1, 3)) + 1 : 1;
-    const comment_id = `C${sequenceNumber.toString().padStart(3, '0')}`;
+    const comment_id = `C${sequenceNumber.toString().padStart(3, "0")}`;
 
     await Comment.create({
       comment_id,
@@ -217,10 +216,10 @@ const giveComment = async (req, res) => {
       comment,
     });
 
-    return res.status(200).json({ message: 'Comment posted successfully' });
+    return res.status(200).json({ message: "Comment posted successfully" });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'An internal server error occurred' });
+    return res.status(500).json({ error: "An internal server error occurred" });
   }
 };
 
@@ -233,11 +232,12 @@ const deleteComment = async (req, res) => {
 
     let { comment_id } = req.params;
 
-    let comment = await Project.findOne({ where: { comment_id } });
+    let comment = await Comment.findOne({ where: { comment_id } });
     if (!comment) return res.status(404).send("Comment not found");
 
-    let userData;
+    let userData = jwt.verify(token, "PROYEKWS");
 
+    console.log(userData);
     if (comment.commenter_id != userData.user_id)
       return res.status(401).send("Cannot delete another user comment!");
 
@@ -344,22 +344,22 @@ const getComments = async (req, res) => {
           },
         },
         include: [
-          { model: Project, as: 'project', attributes: ['title'] },
-          { model: User, as: 'commenter', attributes: ['name'] },
+          { model: Project, as: "project", attributes: ["title"] },
+          { model: User, as: "commenter", attributes: ["name"] },
         ],
-        attributes: ['comment_id', 'comment'],
+        attributes: ["comment_id", "comment"],
       });
     } else {
       comments = await Comment.findAll({
         include: [
-          { model: Project, as: 'project', attributes: ['title'] },
-          { model: User, as: 'commenter', attributes: ['name'] },
+          { model: Project, as: "project", attributes: ["title"] },
+          { model: User, as: "commenter", attributes: ["name"] },
         ],
-        attributes: ['comment_id', 'comment'],
+        attributes: ["comment_id", "comment"],
       });
     }
 
-    const formattedComments = comments.map(comment => ({
+    const formattedComments = comments.map((comment) => ({
       comment_id: comment.comment_id,
       project_id: comment.project.title,
       commenter_id: comment.commenter.name,
@@ -369,7 +369,7 @@ const getComments = async (req, res) => {
     return res.json({ comments: formattedComments });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -382,13 +382,13 @@ const getUserComment = async (req, res) => {
       include: [
         {
           model: User,
-          as: 'commenter',
-          attributes: ['name'],
+          as: "commenter",
+          attributes: ["name"],
         },
         {
           model: Project,
-          as: 'project',
-          attributes: ['title'],
+          as: "project",
+          attributes: ["title"],
         },
       ],
     });
@@ -402,11 +402,9 @@ const getUserComment = async (req, res) => {
     return res.status(200).json({ comments: formattedComments });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'An internal server error occurred' });
+    return res.status(500).json({ error: "An internal server error occurred" });
   }
 };
-
- 
 
 module.exports = {
   registerUser,
@@ -417,5 +415,5 @@ module.exports = {
   topUp,
   recharge,
   getComments,
-  getUserComment
+  getUserComment,
 };
