@@ -9,7 +9,8 @@ let id = 1
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    const folderName = `poster/${req.body.produser}`;
+    const producer_username = req.user.username;
+    const folderName = `poster/${producer_username}`;
 
     if (!fs.existsSync(folderName)) {
       fs.mkdirSync(folderName, { recursive: true });
@@ -281,10 +282,32 @@ const uploadPoster = async (req, res) => {
   });
 };
 
+
 const getPoster = (req, res) => {
   const produser = req.query.produser;
-  const lokasinya = `poster/${produser}/poster.jpg`;
-  return res.status(200).sendFile(lokasinya, { root: "." });
+  const folderPath = `poster/${produser}`;
+
+  // Memeriksa apakah folder ada
+  fs.access(folderPath, fs.constants.F_OK, (err) => {
+    if (err) {
+      // Folder tidak ditemukan, mengirim respons 404 Not Found
+      return res.status(404).send('Folder tidak ditemukan.');
+    }
+
+    // Folder ditemukan, melanjutkan untuk mengirim file
+    const filePath = `${folderPath}/poster.jpg`;
+
+    // Memeriksa apakah file ada
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+      if (err) {
+        // File tidak ditemukan, mengirim respons 404 Not Found
+        return res.status(404).send('File tidak ditemukan.');
+      }
+
+      // File ditemukan, mengirim file menggunakan sendFile()
+      return res.status(200).sendFile(filePath, { root: "." });
+    });
+  });
 };
 
 
