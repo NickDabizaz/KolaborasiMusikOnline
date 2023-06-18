@@ -61,25 +61,26 @@ const upload = multer({
 });
 
 const registerProduser = async (req, res) => {
-  let { user_id } = req.params;
-  user_id = user_id.toString().toUpperCase();
+  const { user_id } = req.user; // Mengambil user_id dari objek user di dalam req
+  const formattedUserId = user_id.toString().toUpperCase();
 
   try {
-    const result = await User.update(
+    const [updatedCount] = await User.update(
       { role: "produser" }, // Peran baru yang akan diupdate
-      { where: { user_id } } // Kondisi untuk menemukan pengguna yang akan diupdate
+      { where: { user_id: formattedUserId } } // Kondisi untuk menemukan pengguna yang akan diupdate
     );
 
-    if (result[0] === 0) {
+    if (updatedCount === 0) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    return res.json({ message: "Berhasil mendaftar sebagai produser" });
+    return res.json({ message: "Successfully registered as a producer" });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Terjadi kesalahan server" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 const createProject = async (req, res) => {
   const { title, description } = req.body;

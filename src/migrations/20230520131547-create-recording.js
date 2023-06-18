@@ -28,7 +28,10 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      file_path: {
+      title: {
+        type: Sequelize.STRING
+      },
+      song_url: {
         type: Sequelize.STRING
       },
       createdAt: {

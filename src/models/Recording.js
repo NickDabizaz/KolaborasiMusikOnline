@@ -30,7 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    file_path: {
+    title: {
+      type: DataTypes.STRING
+    },
+    song_url: {
       type: DataTypes.STRING
     }
   }, {

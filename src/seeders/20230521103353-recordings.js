@@ -8,10 +8,11 @@ module.exports = {
 
     // Generate recordings
     for (let i = 0; i < 20; i++) {
-      let recordingId = `M${(i + 1).toString().padStart(3, "0")}`;
+      let recordingId = `R${(i + 1).toString().padStart(3, "0")}`;
       let projectId = `P${(i + 1).toString().padStart(3, "0")}`;
       let musicianId = `UID${(i + 1).toString().padStart(3, "0")}`;
-      let filePath = faker.system.filePath();
+      let song_url = faker.image.url();
+      let title = faker.lorem.sentence(3)
       let createdAt = new Date();
       let updatedAt = new Date();
 
@@ -19,7 +20,8 @@ module.exports = {
         recording_id: recordingId,
         project_id: projectId,
         musician_id: musicianId,
-        file_path: filePath,
+        title,
+        song_url,
         createdAt: createdAt,
         updatedAt: updatedAt,
       });

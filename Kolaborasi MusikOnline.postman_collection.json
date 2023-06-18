@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "829f55d8-29a7-4f01-b6bd-a42dbe921945",
+		"_postman_id": "681957a1-199d-4d9c-befe-50e67bf5534e",
 		"name": "Kolaborasi MusikOnline",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24968335"
 	},
 	"item": [
 		{
@@ -53,12 +54,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "testUsername2",
+									"value": "testMusisi",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "testing name",
+									"value": "user musisi",
 									"type": "text"
 								},
 								{
@@ -105,12 +106,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "testUsername",
+									"value": "testMusisi",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "123",
+									"value": "1234",
 									"type": "text"
 								}
 							]
@@ -127,104 +128,6 @@
 								"v1",
 								"users",
 								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listen",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/v1/users/listen/M001",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"listen",
-								"M001"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Comment",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4NTMzMjgsImV4cCI6MTY4Njg1NjkyOH0.-u29FjIhR6Ql8p_MbNBugm71J8u5R5Q73N_MXP_e2WA",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "comment",
-									"value": "Bad Song!",
-									"type": "default"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment/P001",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"comment",
-								"P001"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Comment",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4NTMzMjgsImV4cCI6MTY4Njg1NjkyOH0.-u29FjIhR6Ql8p_MbNBugm71J8u5R5Q73N_MXP_e2WA",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment/C021",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"comment",
-								"C021"
 							]
 						}
 					},
@@ -297,6 +200,125 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/comment?keyword=tes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "tes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Give Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcwOTA4NTcsImV4cCI6MTY4NzA5NDQ1N30.E_iGtByoy4A_RXePLt40UfTo2j5F48dkP81mJow7gJg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "comment",
+									"value": "tes comment lagi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/comment/P022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"comment",
+								"P022"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Comment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcwOTA4NTcsImV4cCI6MTY4NzA5NDQ1N30.E_iGtByoy4A_RXePLt40UfTo2j5F48dkP81mJow7gJg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/comment/UID021",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"comment",
+								"UID021"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listen to Music",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/listen/R025",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"listen",
+								"R025"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -307,9 +329,15 @@
 					"name": "Register Musisi",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDkzOTQ0LCJleHAiOjE2ODcwOTc1NDR9.-mAebRooe4MDhsEBHR17s6_L81yd7TQFzDayfs0Mkdg",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/register/UID022",
+							"raw": "http://localhost:3000/api/v1/musisi/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -319,8 +347,113 @@
 								"api",
 								"v1",
 								"musisi",
-								"register",
-								"UID022"
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Recording",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDkzMTU0LCJleHAiOjE2ODcwOTY3NTR9.XkVikow-gWT5l8UZpjvpj0iuUD-P5GlXPSxZx7h1vnw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "song_title",
+									"value": "love yourself",
+									"type": "text"
+								},
+								{
+									"key": "project_id",
+									"value": "P001",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/musisi/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"musisi",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recording",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/musisi/recording?title=doloribus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"musisi",
+								"recording"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "doloribus"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Recording",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/musisi/recording/R022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"musisi",
+								"recording",
+								"R022"
 							]
 						}
 					},
@@ -338,12 +471,12 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY5MDcyNTIsImV4cCI6MTY4NjkxMDg1Mn0.F3MRWFcCnFUKiZfU4UsM5k66nOKz_WKbUHzT8EJjoOs",
-								"type": "default"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpMiIsImlhdCI6MTY4NzA5MzMzNiwiZXhwIjoxNjg3MDk2OTM2fQ.3PavAFNyaOYZZmjcR4C5H7kZc1vS-S7dNvOgVE_Uk5E",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/register/UID021",
+							"raw": "http://localhost:3000/api/v1/produser/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -353,8 +486,7 @@
 								"api",
 								"v1",
 								"produser",
-								"register",
-								"UID021"
+								"register"
 							]
 						}
 					},
@@ -367,7 +499,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4Mzg3ODIsImV4cCI6MTY4Njg0MjM4Mn0.HAtdV4hj4Mm6ebOKMlZYJNYAcHrFhL5bXbydQdApGDI",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4Mzk3NzQsImV4cCI6MTY4Njg0MzM3NH0.NpjC7SVIwhaRIvzifSghywoLGjI2T0q0m1QMm4SYwpQ",
 								"type": "text"
 							}
 						],
@@ -415,7 +547,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/project/P021",
+							"raw": "http://localhost:3000/api/v1/produser/project/P025",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -426,7 +558,7 @@
 								"v1",
 								"produser",
 								"project",
-								"P021"
+								"P025"
 							]
 						}
 					},
@@ -510,12 +642,22 @@
 					"response": []
 				},
 				{
-					"name": "Search Musisi",
+					"name": "Post Poster",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "poster",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/search",
+							"raw": "http://localhost:3000/api/v1/produser/uploadPoster",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -525,29 +667,9 @@
 								"api",
 								"v1",
 								"produser",
-								"search"
+								"uploadPoster"
 							]
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "uploadPoster",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getPoster",
-					"request": {
-						"method": "GET",
-						"header": []
 					},
 					"response": []
 				}

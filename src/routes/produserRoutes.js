@@ -8,7 +8,7 @@ const isLogin = require('../middleware/isLogin');
 const checkRole = require('../middleware/checkRole');
 const isMember = require('../middleware/isMember');
 
-router.put('/register/:user_id',[isLogin, isMember], registerProduser);
+router.put('/register/',[isLogin, isMember], registerProduser);
 router.post('/project',[isLogin, checkRole("produser")], createProject);
 router.get('/search',[isLogin, checkRole("produser")], searchMusisi);
 router.get('/project',[isLogin, checkRole("produser", "musisi", "member")], searchProject);

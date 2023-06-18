@@ -10,7 +10,8 @@ const {
   deleteComment,
   topUp,
   recharge,
-  getComments
+  getComments,
+  getUserComment
 } = require("../controllers/userController");
 
 const isLogin = require("../middleware/isLogin");
@@ -26,7 +27,7 @@ router.delete(
   deleteComment
 );
 router.get('/comment', getComments)
-router.get('/comment/:user_id',[isLogin], getDetailComment)
+router.get('/comment/:user_id',[isLogin], getUserComment)
 router.put("/topup/:user_id", [isLogin], topUp);
 router.put("/recharge/:user_id", [isLogin], recharge);
 
