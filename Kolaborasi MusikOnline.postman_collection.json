@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "681957a1-199d-4d9c-befe-50e67bf5534e",
+		"_postman_id": "f1cd4316-b475-4ced-b09c-f64edb98d5ec",
 		"name": "Kolaborasi MusikOnline",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24968335"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -704,6 +703,77 @@
 								"v1",
 								"produser",
 								"invite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadPoster",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "produser",
+									"value": "rama",
+									"type": "text"
+								},
+								{
+									"key": "poster",
+									"type": "file",
+									"src": "/D:/campuran/instagram pp/1681367985_6437a3b1c80be_3PIsFnFHZ05xHEUqvE28.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/produser/uploadPoster",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"produser",
+								"uploadPoster"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPoster",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/produser/poster?produser=rama",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"produser",
+								"poster"
+							],
+							"query": [
+								{
+									"key": "produser",
+									"value": "rama"
+								}
 							]
 						}
 					},
