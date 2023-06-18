@@ -458,6 +458,74 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update Recording",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "song_title",
+									"value": "perfect",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/musisi/recording/R022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"musisi",
+								"recording",
+								"R022"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Recording",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/musisi/recording/R022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"musisi",
+								"recording",
+								"R022"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -636,38 +704,6 @@
 								"v1",
 								"produser",
 								"invite"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Post Poster",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "poster",
-									"value": "",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/uploadPoster",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"v1",
-								"produser",
-								"uploadPoster"
 							]
 						}
 					},

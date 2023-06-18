@@ -8,6 +8,7 @@ const {
   getRecording,
   getDetailRecording,
   updateRecording,
+  deleteRecording
 } = require("../controllers/musisiController");
 
 const isLogin = require("../middleware/isLogin");
@@ -31,5 +32,11 @@ router.put(
   [isLogin, checkRole("musisi")],
   updateRecording
 );
+
+router.delete(
+    "/recording/:recording_id",
+    [isLogin, checkRole("musisi")],
+    deleteRecording
+  );
 
 module.exports = router;

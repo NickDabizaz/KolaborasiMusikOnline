@@ -244,12 +244,35 @@ const updateRecording = async (req, res) => {
   }
 };
 
+const deleteRecording = async (req, res) => {
+  const { recording_id } = req.params;
+
+  try {
+    // Cek apakah rekaman yang ingin dihapus ada dalam database
+    const recording = await Recording.findByPk(recording_id);
+
+    if (!recording) {
+      return res.status(404).json({ error: 'Recording not found' });
+    }
+
+    // Hapus rekaman dari database
+    await recording.destroy();
+
+    return res.json({ message: 'Recording deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
 module.exports = {
   registerMusisi,
   uploadRecording,
   getRecording,
   getDetailRecording,
   updateRecording,
+  deleteRecording
 };
 
 const generateRecordingId = async () => {
