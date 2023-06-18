@@ -90,17 +90,17 @@ const getRecording = async (req, res) => {
 
     if (title) {
       recordings = await Recording.findAll({
-        attributes: ['recording_id', 'title', 'song_url'],
+        attributes: ["recording_id", "title", "song_url"],
         include: [
           {
             model: Project,
-            as: 'project',
-            attributes: ['title'],
+            as: "project",
+            attributes: ["title"],
           },
           {
             model: User,
-            as: 'musician',
-            attributes: ['name'],
+            as: "musician",
+            attributes: ["name"],
           },
         ],
         where: {
@@ -109,17 +109,17 @@ const getRecording = async (req, res) => {
       });
     } else {
       recordings = await Recording.findAll({
-        attributes: ['recording_id', 'title', 'song_url'],
+        attributes: ["recording_id", "title", "song_url"],
         include: [
           {
             model: Project,
-            as: 'project',
-            attributes: ['title'],
+            as: "project",
+            attributes: ["title"],
           },
           {
             model: User,
-            as: 'musician',
-            attributes: ['name'],
+            as: "musician",
+            attributes: ["name"],
           },
         ],
       });
@@ -134,12 +134,12 @@ const getRecording = async (req, res) => {
     }));
 
     return res.json({
-      message: 'Successfully retrieved recordings',
+      message: "Successfully retrieved recordings",
       recordings: formattedRecordings,
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -148,23 +148,23 @@ const getDetailRecording = async (req, res) => {
 
   try {
     const recording = await Recording.findByPk(recording_id, {
-      attributes: ['recording_id', 'title', 'song_url'],
+      attributes: ["recording_id", "title", "song_url"],
       include: [
         {
           model: Project,
-          as: 'project',
-          attributes: ['title'],
+          as: "project",
+          attributes: ["title"],
         },
         {
           model: User,
-          as: 'musician',
-          attributes: ['name'],
+          as: "musician",
+          attributes: ["name"],
         },
       ],
     });
 
     if (!recording) {
-      return res.status(404).json({ error: 'Recording not found' });
+      return res.status(404).json({ error: "Recording not found" });
     }
 
     const formattedRecording = {
@@ -180,20 +180,76 @@ const getDetailRecording = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
-const updateRecording = async(req,res) => {
+const updateRecording = async (req, res) => {
+  const { recording_id } = req.params;
+  const { song_title } = req.body;
 
- }
+  try {
+    // Step 1: Ambil rekaman yang ingin diupdate
+    const recording = await Recording.findByPk(recording_id);
+
+    if (!recording) {
+      return res.status(404).json({ error: 'Recording not found' });
+    }
+
+    // Step 2: Ambil data baru menggunakan Axios
+    const options = {
+      method: 'GET',
+      url: 'https://spotify23.p.rapidapi.com/search/',
+      params: {
+        q: song_title,
+        type: 'tracks',
+        offset: '0',
+        limit: '1',
+        numberOfTopResults: '1',
+      },
+      headers: {
+        'X-RapidAPI-Key': '9f5928328dmsh2a7db1a70c1d5d6p19fa82jsn66299a07abdb',
+        'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
+      },
+    };
+
+    const response = await axios.request(options);
+
+    if (!response.data.tracks.items.length) {
+      return res.status(404).json({ error: 'Track not found' });
+    }
+
+    const { uri, id, name } = response.data.tracks.items[0].data;
+    const filteredResponse = {
+      record_track: `https://open.spotify.com/intl-id/track/${id}`,
+      title: name,
+    };
+
+    // Step 3: Update rekaman dengan data baru
+    recording.title = filteredResponse.title;
+    recording.song_url = filteredResponse.record_track;
+
+    await recording.save();
+
+    // Step 4: Response dengan informasi terbaru rekaman
+    const filteredResponseUpdate = {
+      title: recording.title,
+      song_url: recording.song_url,
+    };
+
+    return res.json({ message: 'Recording updated successfully', recording: filteredResponseUpdate });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 module.exports = {
   registerMusisi,
   uploadRecording,
   getRecording,
   getDetailRecording,
-  updateRecording
+  updateRecording,
 };
 
 const generateRecordingId = async () => {
