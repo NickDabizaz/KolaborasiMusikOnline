@@ -325,7 +325,6 @@ const getPoster = (req, res) => {
   });
 };
 
-
 module.exports = {
   registerProduser,
   createProject,

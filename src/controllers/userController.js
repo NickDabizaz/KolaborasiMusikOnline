@@ -41,11 +41,20 @@ const registerUser = async (req, res) => {
         "string.max": "Name must not exceed 50 characters",
       }),
 
-      password: Joi.string().min(4).max(20).required().messages({
-        "any.required": "Password is required",
-        "string.min": "Password must be at least 4 characters long",
-        "string.max": "Password must not exceed 20 characters",
-      }),
+      password: Joi.string()
+        .min(4)
+        .max(20)
+        .pattern(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]+$/
+        )
+        .required()
+        .messages({
+          "any.required": "Password is required",
+          "string.min": "Password must be at least 4 characters long",
+          "string.max": "Password must not exceed 20 characters",
+          "string.pattern.base":
+            "Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 symbol",
+        }),
 
       confirm_password: Joi.string()
         .min(4)
@@ -313,7 +322,7 @@ const recharge = async (req, res) => {
     let curBalance = user.balance;
     let newBalance = Number(curBalance) - 5000;
 
-    if (newBalance < 0) return res.status(400).send("Insufficent balance");
+    if (newBalance < 0) return res.status(402).send("Insufficent balance");
 
     let curApi_hit = user.api_hit;
     let newApi_hit = Number(curApi_hit) + 200;

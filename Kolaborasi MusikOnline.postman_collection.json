@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "531f1ddf-3c56-4145-b151-02cb16e1c6b1",
+		"_postman_id": "85602d81-7f7f-4b88-9844-519b24eb86b4",
 		"name": "Kolaborasi MusikOnline",
+		"description": "## **Collection ini mengandung dokumentasi MusikOnline**\n\n- Folder user berisi dokumen untuk user\n- Folder musisi berisi dokumen untuk musisi\n- Folder produser berisi dokumen untuk produser",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24968335"
+		"_exporter_id": "27256094"
 	},
 	"item": [
 		{
@@ -54,27 +55,31 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "testUsername",
+									"value": "budiganteng",
+									"description": "Username untuk akun user. Panjang username yang diperbolehkan antara 4-20 digit dan username harus unique",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "user name",
+									"value": "Budi Didi",
+									"description": "Nama untuk akun user. Panjang nama yang diperbolehkan antara 4-50 digit.",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "1234",
+									"value": "Budidi(10)",
+									"description": "Password untuk akun user. Password harus memiliki 4-20 karakter, minimal 1 karakter kecil, 1 karakter besar, 1 angka, dan 1 simbol.",
 									"type": "text"
 								},
 								{
 									"key": "confirm_password",
-									"value": "1234",
+									"value": "Budidi(10)",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "user@gmail.com",
+									"value": "budidi10@gmail.com",
+									"description": "Email untuk akun user.",
 									"type": "text"
 								}
 							]
@@ -92,7 +97,8 @@
 								"users",
 								"register"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk melakukan registrasi pengguna baru dalam aplikasi. Saat registrasi berhasil, pengguna akan memiliki akun baru yang dapat digunakan untuk mengakses fitur-fitur yang disediakan."
 					},
 					"response": []
 				},
@@ -106,12 +112,14 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "testUsername",
+									"value": "budiganteng",
+									"description": "Username dari akun yang ingin dipakai",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "1234",
+									"value": "Budidi(10)",
+									"description": "Password dari akun ayng ingin dipakai",
 									"type": "text"
 								}
 							]
@@ -129,85 +137,25 @@
 								"users",
 								"login"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Top-up",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "amount",
-									"value": "100000",
-									"type": "default"
-								}
-							]
 						},
-						"url": {
-							"raw": "http://localhost:3000/api/v1/users/topup/UID21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"topup",
-								"UID21"
-							]
-						}
+						"description": "Endpoint untuk melakukan penambahan saldo ke akun pengguna. Perlu diingat bahwa fitur ini memerlukan token yang didapatkan dari login. Return dari endpoint ini adalah berupa token yang diperlukan untuk mengakses fitur-fitur lainnya. Masa aktif token sendiri adalah 1 jam."
 					},
 					"response": []
 				},
 				{
-					"name": "Recharge",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3000/api/v1/users/recharge/UID21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"recharge",
-								"UID21"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Comments",
+					"name": "Listen to Music",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcwOTA4NTcsImV4cCI6MTY4NzA5NDQ1N30.E_iGtByoy4A_RXePLt40UfTo2j5F48dkP81mJow7gJg",
+								"description": "Token yang didapat pada saat melakukan login",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment?keyword=tes",
+							"raw": "http://localhost:3000/api/v1/users/listen/R025",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -217,15 +165,11 @@
 								"api",
 								"v1",
 								"users",
-								"comment"
-							],
-							"query": [
-								{
-									"key": "keyword",
-									"value": "tes"
-								}
+								"listen",
+								"R025"
 							]
-						}
+						},
+						"description": "Endpoint untuk mendapatkan link dari musik yang dicari.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -237,7 +181,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcwOTA4NTcsImV4cCI6MTY4NzA5NDQ1N30.E_iGtByoy4A_RXePLt40UfTo2j5F48dkP81mJow7gJg",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"body": {
@@ -245,7 +190,8 @@
 							"urlencoded": [
 								{
 									"key": "comment",
-									"value": "tes comment lagi",
+									"value": "Good song!",
+									"description": "Comment yang ingin di posting",
 									"type": "text"
 								}
 							]
@@ -264,19 +210,82 @@
 								"comment",
 								"P022"
 							]
-						}
+						},
+						"description": "Endpoint untuk menambahkan comment pada proyek yang diinginkan.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
 				{
-					"name": "Get Detail Comment",
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
+								"description": "Token yang didapat pada saat melakukan login",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/comment/C002",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"comment",
+								"C002"
+							]
+						},
+						"description": "Endpoint yang digunakan user untuk menghapus commentnya sendiri.\n\n\\`\n\nNote:\n\n- User tidak diperbolehkan menghapus comment user lain\n- Fitur ini memerlukan token yang didapatkan dari login.\n- Fitur ini berharga 1 api_hit"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/comment?keyword=Good song",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "Good song",
+									"description": "Kata yang ingin dicari. Hasilnya akan mengembalikan semua comment yang mengandung kata ini."
+								}
+							]
+						},
+						"description": "Endpoint untuk mencari semua comment yang mengandung kata yang diinginkan.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Comment",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcwOTA4NTcsImV4cCI6MTY4NzA5NDQ1N30.E_iGtByoy4A_RXePLt40UfTo2j5F48dkP81mJow7gJg",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
@@ -293,17 +302,36 @@
 								"comment",
 								"UID021"
 							]
-						}
+						},
+						"description": "Endpoint untuk mendapatkan semua comment yang milik seorang user.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
 				{
-					"name": "Listen to Music",
+					"name": "Top-up",
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
+								"type": "default",
+								"description": "Token yang didapat pada saat melakukan login"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "100000",
+									"description": "Jumlah saldo yang ingin ditambahkan",
+									"type": "default"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/listen/R025",
+							"raw": "http://localhost:3000/api/v1/users/topup/UID21",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -313,10 +341,42 @@
 								"api",
 								"v1",
 								"users",
-								"listen",
-								"R025"
+								"topup",
+								"UID21"
 							]
-						}
+						},
+						"description": "Endpoint untuk melakukan penambahan saldo pengguna.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login."
+					},
+					"response": []
+				},
+				{
+					"name": "Recharge",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
+								"type": "default",
+								"description": "Token yang didapat pada saat melakukan login"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/recharge/UID21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"recharge",
+								"UID21"
+							]
+						},
+						"description": "Endpoint yang digunakan untuk menambahkan jumlah api_hit akun pengguna. Harga dari api_hit adalah Rp 5.000,00 untuk 200 api_hit. Api_hit diperlukan untuk mengakses beberapa fitur-fitur tertentu.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login."
 					},
 					"response": []
 				}
@@ -333,7 +393,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDkzOTQ0LCJleHAiOjE2ODcwOTc1NDR9.-mAebRooe4MDhsEBHR17s6_L81yd7TQFzDayfs0Mkdg",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
@@ -349,7 +410,8 @@
 								"musisi",
 								"register"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk melakukan registrasi sebagai musisi\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan akun user yang telah ada untuk didaftarkan menjadi musisi\n- Fitur ini memerlukan token yang didapatkan dari login"
 					},
 					"response": []
 				},
@@ -361,7 +423,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDkzMTU0LCJleHAiOjE2ODcwOTY3NTR9.XkVikow-gWT5l8UZpjvpj0iuUD-P5GlXPSxZx7h1vnw",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"body": {
@@ -370,11 +433,13 @@
 								{
 									"key": "song_title",
 									"value": "love yourself",
+									"description": "Judul Recording",
 									"type": "text"
 								},
 								{
 									"key": "project_id",
 									"value": "P001",
+									"description": "Id Proyek",
 									"type": "text"
 								}
 							]
@@ -392,7 +457,8 @@
 								"musisi",
 								"upload"
 							]
-						}
+						},
+						"description": "Endpoint untuk musisi mengupload recordingnya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -404,7 +470,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
@@ -423,10 +490,12 @@
 							"query": [
 								{
 									"key": "title",
-									"value": "doloribus"
+									"value": "doloribus",
+									"description": "Judul dari recording yang ingin dicari"
 								}
 							]
-						}
+						},
+						"description": "Endpoint untuk mendapatkan semua recording yang telah diupload user\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -438,7 +507,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
@@ -455,7 +525,8 @@
 								"recording",
 								"R022"
 							]
-						}
+						},
+						"description": "Endpoint untuk mendapatkan detail dari suatu recording\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -467,7 +538,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"body": {
@@ -476,6 +548,7 @@
 								{
 									"key": "song_title",
 									"value": "perfect",
+									"description": "Judul baru",
 									"type": "text"
 								}
 							]
@@ -494,7 +567,8 @@
 								"recording",
 								"R022"
 							]
-						}
+						},
+						"description": "Endpoint untuk musisi mengupdaterecordingnya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -506,7 +580,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
@@ -523,7 +598,8 @@
 								"recording",
 								"R022"
 							]
-						}
+						},
+						"description": "Endpoint untuk musisi menghapus recordingnya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				}
@@ -540,7 +616,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
@@ -556,7 +633,8 @@
 								"produser",
 								"register"
 							]
-						}
+						},
+						"description": "Endpoint untuk melakukan registrasi sebagai produser\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan akun user yang sudah ada untuk didaftarkan sebagai produser\n- Fitur ini memerlukan token yang didapatkan dari login."
 					},
 					"response": []
 				},
@@ -568,7 +646,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"body": {
@@ -576,12 +655,14 @@
 							"urlencoded": [
 								{
 									"key": "title",
-									"value": "New Testing Project2",
+									"value": "Proyek Z",
+									"description": "Judul proyek",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque iste dolorum ullam necessitatibus distinctio facilis dignissimos soluta est harum optio magnam, sint quia eligendi error sunt, laudantium ipsam, quae delectus.lorem",
+									"value": "Ini proyek Z",
+									"description": "keterangan proyek",
 									"type": "text"
 								}
 							]
@@ -599,7 +680,8 @@
 								"produser",
 								"project"
 							]
-						}
+						},
+						"description": "Endpoint untuk produser membuat proyek baru\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -611,7 +693,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4MzcwMDMsImV4cCI6MTY4Njg0MDYwM30.fZCCI6yz9jcTicCU9Xu5nDGfO40LFhCMx2Wsr1wSlqE",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
@@ -628,7 +711,8 @@
 								"project",
 								"P025"
 							]
-						}
+						},
+						"description": "Endpoint untuk produser menghapus proyeknya\n\n\\`\n\nNote:\n\n- Produser tidak bisa menghapus proyek produser lain\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -640,7 +724,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
@@ -656,7 +741,8 @@
 								"produser",
 								"project"
 							]
-						}
+						},
+						"description": "Endpoint untuk mendapatkan semua proyek dimana user merupakan anggota dari proyek tersebut\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -668,7 +754,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4Mzg3ODIsImV4cCI6MTY4Njg0MjM4Mn0.HAtdV4hj4Mm6ebOKMlZYJNYAcHrFhL5bXbydQdApGDI",
-								"type": "text"
+								"type": "text",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"body": {
@@ -677,11 +764,13 @@
 								{
 									"key": "project_id",
 									"value": "P021",
+									"description": "Id Proyek",
 									"type": "text"
 								},
 								{
 									"key": "user_id",
 									"value": "UID022",
+									"description": "Id user yang diinvite",
 									"type": "text"
 								}
 							]
@@ -699,7 +788,8 @@
 								"produser",
 								"invite"
 							]
-						}
+						},
+						"description": "Endpoint untuk produser mengundang musisi untuk bergabung di proyeknya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -711,7 +801,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDA4NTQsImV4cCI6MTY4NzEwNDQ1NH0.8rA8cdod4cC9MYaERoNJKkHSKiX7ZPBpNK4GVB_E9yg",
-								"type": "default"
+								"type": "default",
+								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"body": {
@@ -720,10 +811,12 @@
 								{
 									"key": "project_id",
 									"value": "P0223",
+									"description": "Id proyek",
 									"type": "text"
 								},
 								{
 									"key": "poster",
+									"description": "Poster",
 									"type": "file",
 									"src": "/C:/Users/Nicklaus/Downloads/kobo.jpg"
 								}
@@ -742,7 +835,8 @@
 								"produser",
 								"uploadPoster"
 							]
-						}
+						},
+						"description": "Endpoint untuk produser mengupload poster proyeknya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				},
@@ -765,7 +859,8 @@
 								"poster",
 								"P0223"
 							]
-						}
+						},
+						"description": "Endpoint untuk mendapatkan poster suatu proyek\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
 					"response": []
 				}

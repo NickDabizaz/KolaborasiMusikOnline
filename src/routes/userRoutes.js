@@ -15,15 +15,16 @@ const {
 } = require("../controllers/userController");
 
 const isLogin = require("../middleware/isLogin");
+const hitReduce = require("../middleware/hitReduce");
 const checkRole = require("../middleware/checkRole");
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/listen/:recording_id", listenToMusic);
-router.post("/comment/:project_id", [isLogin], giveComment);
-router.delete("/comment/:comment_id", [isLogin], deleteComment);
+router.get("/listen/:recording_id", [isLogin, hitReduce], listenToMusic);
+router.post("/comment/:project_id", [isLogin, hitReduce], giveComment);
+router.delete("/comment/:comment_id", [isLogin, hitReduce], deleteComment);
 router.get("/comment", getComments);
-router.get("/comment/:user_id", [isLogin], getUserComment);
+router.get("/comment/:user_id", [isLogin, hitReduce], getUserComment);
 router.put("/topup/:user_id", [isLogin], topUp);
 router.put("/recharge/:user_id", [isLogin], recharge);
 
