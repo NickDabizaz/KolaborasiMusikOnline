@@ -14,7 +14,6 @@ const isLogin = async (req, res, next) => {
     let user = await User.findOne({ where: { user_id: decoded.user_id } });
     // Setel pengguna yang terautentikasi ke dalam objek request
     req.user = user;
-
     // Lanjutkan ke middleware atau handler berikutnya
     next();
   } catch (error) {

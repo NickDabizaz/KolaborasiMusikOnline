@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "85602d81-7f7f-4b88-9844-519b24eb86b4",
+		"_postman_id": "ab6915de-682c-4e3e-b49e-7bf0b537b653",
 		"name": "Kolaborasi MusikOnline",
 		"description": "## **Collection ini mengandung dokumentasi MusikOnline**\n\n- Folder user berisi dokumen untuk user\n- Folder musisi berisi dokumen untuk musisi\n- Folder produser berisi dokumen untuk produser",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27256094"
+		"_exporter_id": "24968335"
 	},
 	"item": [
 		{
@@ -55,7 +55,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "budiganteng",
+									"value": "budiganteng2",
 									"description": "Username untuk akun user. Panjang username yang diperbolehkan antara 4-20 digit dan username harus unique",
 									"type": "text"
 								},
@@ -104,6 +104,29 @@
 				},
 				{
 					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Login success\");\r",
+									"  pm.expect(responseBody).to.have.property(\"token\").to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -144,18 +167,41 @@
 				},
 				{
 					"name": "Listen to Music",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"title\").to.be.a(\"string\");\r",
+									"  pm.expect(responseBody).to.have.property(\"url\").to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcwOTA4NTcsImV4cCI6MTY4NzA5NDQ1N30.E_iGtByoy4A_RXePLt40UfTo2j5F48dkP81mJow7gJg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"description": "Token yang didapat pada saat melakukan login",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/listen/R025",
+							"raw": "http://localhost:3000/api/v1/users/listen/R001",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -166,7 +212,7 @@
 								"v1",
 								"users",
 								"listen",
-								"R025"
+								"R001"
 							]
 						},
 						"description": "Endpoint untuk mendapatkan link dari musik yang dicari.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
@@ -175,12 +221,34 @@
 				},
 				{
 					"name": "Give Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Comment posted successfully\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcwOTA4NTcsImV4cCI6MTY4NzA5NDQ1N30.E_iGtByoy4A_RXePLt40UfTo2j5F48dkP81mJow7gJg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -217,18 +285,36 @@
 				},
 				{
 					"name": "Delete Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.expect(pm.response.text()).to.equal(\"Successfully deleted comment!\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"description": "Token yang didapat pada saat melakukan login",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment/C002",
+							"raw": "http://localhost:3000/api/v1/users/comment/C021",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -239,7 +325,7 @@
 								"v1",
 								"users",
 								"comment",
-								"C002"
+								"C021"
 							]
 						},
 						"description": "Endpoint yang digunakan user untuk menghapus commentnya sendiri.\n\n\\`\n\nNote:\n\n- User tidak diperbolehkan menghapus comment user lain\n- Fitur ini memerlukan token yang didapatkan dari login.\n- Fitur ini berharga 1 api_hit"
@@ -248,6 +334,37 @@
 				},
 				{
 					"name": "Search Comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"comments\").to.be.an(\"array\");\r",
+									"\r",
+									"  const comments = responseBody.comments;\r",
+									"\r",
+									"  comments.forEach((comment) => {\r",
+									"    pm.expect(comment).to.have.property(\"comment_id\").to.be.a(\"string\");\r",
+									"    pm.expect(comment).to.have.property(\"project_id\").to.be.a(\"string\");\r",
+									"    pm.expect(comment).to.have.property(\"commenter_id\").to.be.a(\"string\");\r",
+									"    pm.expect(comment).to.have.property(\"comment\").to.be.a(\"string\");\r",
+									"  });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -267,8 +384,7 @@
 							"query": [
 								{
 									"key": "keyword",
-									"value": "Good song",
-									"description": "Kata yang ingin dicari. Hasilnya akan mengembalikan semua comment yang mengandung kata ini."
+									"value": "Good song"
 								}
 							]
 						},
@@ -278,18 +394,48 @@
 				},
 				{
 					"name": "Get User Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"comments\").to.be.an(\"array\");\r",
+									"\r",
+									"  const comments = responseBody.comments;\r",
+									"\r",
+									"  comments.forEach((comment) => {\r",
+									"    pm.expect(comment).to.have.property(\"comment_id\").to.be.a(\"string\");\r",
+									"    pm.expect(comment).to.have.property(\"project_title\").to.be.a(\"string\");\r",
+									"    pm.expect(comment).to.have.property(\"comment\").to.be.a(\"string\");\r",
+									"  });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcwOTA4NTcsImV4cCI6MTY4NzA5NDQ1N30.E_iGtByoy4A_RXePLt40UfTo2j5F48dkP81mJow7gJg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment/UID021",
+							"raw": "http://localhost:3000/api/v1/users/comment/UID022",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -300,7 +446,7 @@
 								"v1",
 								"users",
 								"comment",
-								"UID021"
+								"UID022"
 							]
 						},
 						"description": "Endpoint untuk mendapatkan semua comment yang milik seorang user.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
@@ -309,12 +455,34 @@
 				},
 				{
 					"name": "Top-up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Top-up successful\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -331,7 +499,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/topup/UID21",
+							"raw": "http://localhost:3000/api/v1/users/topup/UID022",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -342,7 +510,7 @@
 								"v1",
 								"users",
 								"topup",
-								"UID21"
+								"UID022"
 							]
 						},
 						"description": "Endpoint untuk melakukan penambahan saldo pengguna.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login."
@@ -351,18 +519,40 @@
 				},
 				{
 					"name": "Recharge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Recharge successful\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY3NjQ2MjcsImV4cCI6MTY4Njc2ODIyN30.11tQrRLRh_oN8RRUwAzLFHvLdOfowEB_NV-M91rVwEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/recharge/UID21",
+							"raw": "http://localhost:3000/api/v1/users/recharge/UID022",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -373,7 +563,7 @@
 								"v1",
 								"users",
 								"recharge",
-								"UID21"
+								"UID022"
 							]
 						},
 						"description": "Endpoint yang digunakan untuk menambahkan jumlah api_hit akun pengguna. Harga dari api_hit adalah Rp 5.000,00 untuk 200 api_hit. Api_hit diperlukan untuk mengakses beberapa fitur-fitur tertentu.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login."
@@ -387,12 +577,37 @@
 			"item": [
 				{
 					"name": "Register Musisi",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\r",
+									"    \"message\",\r",
+									"    \"Successfully registered as a musician\"\r",
+									"  );\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDkzOTQ0LCJleHAiOjE2ODcwOTc1NDR9.-mAebRooe4MDhsEBHR17s6_L81yd7TQFzDayfs0Mkdg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -417,12 +632,40 @@
 				},
 				{
 					"name": "Upload Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Recording uploaded successfully\");\r",
+									"  pm.expect(responseBody).to.have.property(\"recording\").that.is.an(\"object\");\r",
+									"  pm.expect(responseBody.recording).to.have.property(\"recording_id\");\r",
+									"  pm.expect(responseBody.recording).to.have.property(\"project_id\");\r",
+									"  pm.expect(responseBody.recording).to.have.property(\"musician_id\");\r",
+									"  pm.expect(responseBody.recording).to.have.property(\"title\");\r",
+									"  pm.expect(responseBody.recording).to.have.property(\"song_url\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDkzMTU0LCJleHAiOjE2ODcwOTY3NTR9.XkVikow-gWT5l8UZpjvpj0iuUD-P5GlXPSxZx7h1vnw",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -464,18 +707,51 @@
 				},
 				{
 					"name": "Get Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Successfully retrieved recordings\");\r",
+									"  pm.expect(responseBody).to.have.property(\"recordings\").that.is.an(\"array\");\r",
+									"\r",
+									"  const recordings = responseBody.recordings;\r",
+									"\r",
+									"  recordings.forEach((recording) => {\r",
+									"    pm.expect(recording).to.have.property(\"recording_id\");\r",
+									"    pm.expect(recording).to.have.property(\"project_title\");\r",
+									"    pm.expect(recording).to.have.property(\"musician\");\r",
+									"    pm.expect(recording).to.have.property(\"title\");\r",
+									"    pm.expect(recording).to.have.property(\"song_url\");\r",
+									"  });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/recording?title=doloribus",
+							"raw": "http://localhost:3000/api/v1/musisi/recording?title=ducimus",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -490,8 +766,7 @@
 							"query": [
 								{
 									"key": "title",
-									"value": "doloribus",
-									"description": "Judul dari recording yang ingin dicari"
+									"value": "ducimus"
 								}
 							]
 						},
@@ -501,18 +776,48 @@
 				},
 				{
 					"name": "Get Detail Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"recording\").that.is.an(\"object\");\r",
+									"\r",
+									"  const recording = responseBody.recording;\r",
+									"\r",
+									"  pm.expect(recording).to.have.property(\"recording_id\");\r",
+									"  pm.expect(recording).to.have.property(\"project_title\");\r",
+									"  pm.expect(recording).to.have.property(\"musician\");\r",
+									"  pm.expect(recording).to.have.property(\"title\");\r",
+									"  pm.expect(recording).to.have.property(\"song_url\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/recording/R022",
+							"raw": "http://localhost:3000/api/v1/musisi/recording/R021",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -523,7 +828,7 @@
 								"v1",
 								"musisi",
 								"recording",
-								"R022"
+								"R021"
 							]
 						},
 						"description": "Endpoint untuk mendapatkan detail dari suatu recording\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
@@ -532,12 +837,40 @@
 				},
 				{
 					"name": "Update Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Recording updated successfully\");\r",
+									"  pm.expect(responseBody).to.have.property(\"recording\").to.be.an(\"object\");\r",
+									"\r",
+									"  const recording = responseBody.recording;\r",
+									"\r",
+									"  pm.expect(recording).to.have.property(\"title\").to.be.a(\"string\");\r",
+									"  pm.expect(recording).to.have.property(\"song_url\").to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -554,7 +887,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/recording/R022",
+							"raw": "http://localhost:3000/api/v1/musisi/recording/R021",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -565,7 +898,7 @@
 								"v1",
 								"musisi",
 								"recording",
-								"R022"
+								"R021"
 							]
 						},
 						"description": "Endpoint untuk musisi mengupdaterecordingnya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
@@ -574,18 +907,40 @@
 				},
 				{
 					"name": "Delete Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Recording deleted successfully\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0TXVzaXNpIiwiaWF0IjoxNjg3MDk1MTk0LCJleHAiOjE2ODcwOTg3OTR9.meHpCIajWfZyIgA01lU0iKjb_STeW8OsZu59FDMh8Ak",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/recording/R022",
+							"raw": "http://localhost:3000/api/v1/musisi/recording/R021",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -596,7 +951,7 @@
 								"v1",
 								"musisi",
 								"recording",
-								"R022"
+								"R021"
 							]
 						},
 						"description": "Endpoint untuk musisi menghapus recordingnya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
@@ -610,12 +965,34 @@
 			"item": [
 				{
 					"name": "Register Produser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Successfully registered as a producer\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -640,12 +1017,40 @@
 				},
 				{
 					"name": "Create Project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Project registered successfully\");\r",
+									"  pm.expect(responseBody).to.have.property(\"project_id\").to.be.a(\"string\");\r",
+									"  pm.expect(responseBody).to.have.property(\"title\").to.be.a(\"string\");\r",
+									"  pm.expect(responseBody).to.have.property(\"description\").to.be.a(\"string\");\r",
+									"  pm.expect(responseBody).to.have.property(\"producer_id\").to.be.a(\"string\");\r",
+									"  pm.expect(responseBody).to.have.property(\"createdAt\").to.be.a(\"string\");\r",
+									"  pm.expect(responseBody).to.have.property(\"updatedAt\").to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -687,12 +1092,34 @@
 				},
 				{
 					"name": "Delete Project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"Project post successfully deleted\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4MzcwMDMsImV4cCI6MTY4Njg0MDYwM30.fZCCI6yz9jcTicCU9Xu5nDGfO40LFhCMx2Wsr1wSlqE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -718,18 +1145,54 @@
 				},
 				{
 					"name": "Get Projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"page\").to.be.a(\"number\");\r",
+									"  pm.expect(responseBody).to.have.property(\"total_pages\").to.be.a(\"number\");\r",
+									"  pm.expect(responseBody).to.have.property(\"total_results\").to.be.a(\"number\");\r",
+									"  pm.expect(responseBody).to.have.property(\"projects\").to.be.an(\"array\");\r",
+									"\r",
+									"  const projects = responseBody.projects;\r",
+									"\r",
+									"  projects.forEach((project) => {\r",
+									"    pm.expect(project).to.have.property(\"project_id\").to.be.a(\"string\");\r",
+									"    pm.expect(project).to.have.property(\"title\").to.be.a(\"string\");\r",
+									"    pm.expect(project).to.have.property(\"description\").to.be.a(\"string\");\r",
+									"    pm.expect(project).to.have.property(\"producer_id\").to.be.a(\"string\");\r",
+									"    pm.expect(project).to.have.property(\"createdAt\").to.be.a(\"string\");\r",
+									"    pm.expect(project).to.have.property(\"updatedAt\").to.be.a(\"string\");\r",
+									"  });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDE2NjIsImV4cCI6MTY4NzEwNTI2Mn0.U6qDgoFKc73ROGNMMD2f6z3fOwcr8-vkjGt04VTjHds",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/project",
+							"raw": "http://localhost:3000/api/v1/produser/project?q=",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -740,6 +1203,12 @@
 								"v1",
 								"produser",
 								"project"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": ""
+								}
 							]
 						},
 						"description": "Endpoint untuk mendapatkan semua proyek dimana user merupakan anggota dari proyek tersebut\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
@@ -748,12 +1217,34 @@
 				},
 				{
 					"name": "Invite Musisi",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"  pm.response.to.be.json;\r",
+									"\r",
+									"  const responseBody = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseBody).to.have.property(\"message\", \"The musician has been successfully invited to the project\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIxIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODY4Mzg3ODIsImV4cCI6MTY4Njg0MjM4Mn0.HAtdV4hj4Mm6ebOKMlZYJNYAcHrFhL5bXbydQdApGDI",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -763,7 +1254,7 @@
 							"urlencoded": [
 								{
 									"key": "project_id",
-									"value": "P021",
+									"value": "P001",
 									"description": "Id Proyek",
 									"type": "text"
 								},
@@ -795,12 +1286,43 @@
 				},
 				{
 					"name": "uploadPoster",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Upload poster successfully\", function () {\r",
+									"  pm.sendRequest(function (err, response) {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.jsonBody({ message: \"Poster uploaded successfully\" });\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Project not found\", function () {\r",
+									"  pm.sendRequest(function (err, response) {\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.have.jsonBody({ message: \"Project Not Found\" });\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error during upload\", function () {\r",
+									"  pm.sendRequest(function (err, response) {\r",
+									"    pm.response.to.have.status(400);\r",
+									"    pm.response.to.have.jsonBody({ message: pm.expect.something() });\r",
+									"  });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJ0ZXN0VXNlcm5hbWUiLCJpYXQiOjE2ODcxMDA4NTQsImV4cCI6MTY4NzEwNDQ1NH0.8rA8cdod4cC9MYaERoNJKkHSKiX7ZPBpNK4GVB_E9yg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzI0MjY4MiwiZXhwIjoxNjg3MjQ2MjgyfQ.YkCBMo3cCQGekjpynZ2AtWE54ITR3QwW3M2FIDG3Rzk",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -810,7 +1332,7 @@
 							"formdata": [
 								{
 									"key": "project_id",
-									"value": "P0223",
+									"value": "P022",
 									"description": "Id proyek",
 									"type": "text"
 								},
@@ -842,11 +1364,27 @@
 				},
 				{
 					"name": "getPoster",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"File found - should return 200 and send the file\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"  pm.response.to.be.header(\"Content-Type\", \"image/jpeg\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/poster/P0223",
+							"raw": "http://localhost:3000/api/v1/produser/poster/P021",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -857,7 +1395,7 @@
 								"v1",
 								"produser",
 								"poster",
-								"P0223"
+								"P021"
 							]
 						},
 						"description": "Endpoint untuk mendapatkan poster suatu proyek\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"

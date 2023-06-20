@@ -214,10 +214,13 @@ const giveComment = async (req, res) => {
       return res.status(400).json({ error: "Comment cannot be blank" });
     }
 
+    if (!req.user || !req.user.user_id) {
+      return res.status(400).json({ error: "User ID not provided" });
+    }
+
     const maxId = await Comment.max("comment_id");
     const sequenceNumber = maxId ? Number(maxId.substr(1, 3)) + 1 : 1;
     const comment_id = `C${sequenceNumber.toString().padStart(3, "0")}`;
-
     await Comment.create({
       comment_id,
       project_id,
@@ -231,6 +234,7 @@ const giveComment = async (req, res) => {
     return res.status(500).json({ error: "An internal server error occurred" });
   }
 };
+
 
 const deleteComment = async (req, res) => {
   try {
@@ -332,7 +336,7 @@ const recharge = async (req, res) => {
       { where: { username: userData.username } }
     );
 
-    return res.status(200).send("Recharge successful");
+    return res.status(200).json({message : "Recharge successful"});
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -384,7 +388,8 @@ const getComments = async (req, res) => {
 
 const getUserComment = async (req, res) => {
   try {
-    const { user_id } = req.params;
+    user_id = req.user.user_id
+    console.log(user_id);
 
     const comments = await Comment.findAll({
       where: { commenter_id: user_id },
@@ -401,6 +406,8 @@ const getUserComment = async (req, res) => {
         },
       ],
     });
+
+    console.log({comments});
 
     const formattedComments = comments.map((comment) => ({
       comment_id: comment.comment_id,

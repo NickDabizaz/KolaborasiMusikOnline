@@ -127,9 +127,9 @@ const getRecording = async (req, res) => {
 
     const formattedRecordings = recordings.map((recording) => ({
       recording_id: recording.recording_id,
+      title: recording.title,
       project_title: recording.project.title,
       musician: recording.musician.name,
-      title: recording.title,
       song_url: recording.song_url,
     }));
 

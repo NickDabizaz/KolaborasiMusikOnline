@@ -5,7 +5,6 @@ const router = express.Router();
 const {
   registerProduser,
   createProject,
-  searchMusisi,
   inviteMusisi,
   deleteProjectPost,
   searchProject,
@@ -24,11 +23,7 @@ router.post(
   [isLogin, checkRole("produser"), hitReduce],
   createProject
 );
-router.get(
-  "/search",
-  [isLogin, checkRole("produser"), hitReduce],
-  searchMusisi
-);
+
 router.get(
   "/project",
   [isLogin, checkRole("produser", "musisi", "member"), hitReduce],

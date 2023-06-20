@@ -118,7 +118,6 @@ const createProject = async (req, res) => {
       project_id: createProject.project_id,
       title,
       description,
-      poster_path: null,
       producer_id,
       createdAt: currentDate,
       updatedAt: currentDate,
@@ -126,32 +125,6 @@ const createProject = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
-  }
-};
-
-const searchMusisi = async (req, res) => {
-  // Implementasi logika untuk mencari musisi untuk proyek
-  try {
-    const musisi = await User.findAll({
-      where: { role: "musisi" },
-      attributes: ["name"],
-      include: [
-        {
-          model: Project,
-          as: "projects",
-          attributes: ["title", "description"],
-          through: {
-            model: ProjectMember,
-            attributes: [],
-          },
-        },
-      ],
-    });
-
-    res.status(200).json(musisi);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -278,13 +251,17 @@ const uploadPoster = async (req, res) => {
       }
 
       const { project_id } = req.body;
+      if (!project_id) {
+        return res.status(400).json({ message: "project_id is required" });
+      }
       const project = await Project.findOne({ where: { project_id } });
-      console.log({ project });
 
       if (!project) {
         // Delete the uploaded file
-        const filePath = req.file.path;
-        fs.unlinkSync(filePath);
+        if (req.file) {
+          const filePath = req.file.path;
+          fs.unlinkSync(filePath);
+        }
 
         return res.status(404).json({ message: "Project Not Found" });
       }
@@ -306,7 +283,7 @@ const getPoster = (req, res) => {
     if (err) {
       // Folder not found, send 404 Not Found response
       console.log(err);
-      return res.status(404).send("Poster not found.");
+      return res.status(404).json({message : "Poster not found."});
     }
 
     // Folder found, proceed to send the file
@@ -316,7 +293,7 @@ const getPoster = (req, res) => {
     fs.access(filePath, fs.constants.F_OK, (err) => {
       if (err) {
         // File not found, send 404 Not Found response
-        return res.status(404).send("Poster not found.");
+        return res.status(404).json({message : "Poster not found."});
       }
 
       // File found, send the file using sendFile()
@@ -328,7 +305,6 @@ const getPoster = (req, res) => {
 module.exports = {
   registerProduser,
   createProject,
-  searchMusisi,
   inviteMusisi,
   deleteProjectPost,
   searchProject,
