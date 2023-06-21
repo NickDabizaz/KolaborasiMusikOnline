@@ -29,7 +29,7 @@ module.exports = {
     const users = [];
 
     // Generate 10 users
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       let userId = `UID${(i + 1).toString().padStart(3, "0")}`;
       let firstName = faker.person.firstName();
       let lastName = faker.person.lastName();

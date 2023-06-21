@@ -7,7 +7,7 @@ module.exports = {
     const comments = [];
 
     // Generate comments
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       let commentId = `C${(i + 1).toString().padStart(3, "0")}`;
       let projectId = `P${(i + 1).toString().padStart(3, "0")}`;
       let commenterId = `UID${(i + 1).toString().padStart(3, "0")}`;

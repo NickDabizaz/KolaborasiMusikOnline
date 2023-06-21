@@ -7,7 +7,7 @@ module.exports = {
     const projectMembers = [];
 
     // Generate project members
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       let memberId = `M${(i + 1).toString().padStart(3, "0")}`;
       let musicianId = `UID${(i + 1).toString().padStart(3, "0")}`
       let projectId = `P${(i + 1).toString().padStart(3, "0")}`

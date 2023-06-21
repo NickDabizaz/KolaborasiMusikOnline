@@ -7,7 +7,7 @@ module.exports = {
     const projects = [];
 
     // Generate 10 projects
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       let projectId = `P${(i + 1).toString().padStart(3, "0")}`;
       let title = faker.lorem.words(3);
       let description = faker.lorem.sentence();
