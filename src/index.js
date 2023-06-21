@@ -7,6 +7,9 @@ const produserRoutes = require('./routes/produserRoutes');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
 app.use('/api/v1/musisi', musisiRoutes);
 app.use('/api/v1/produser', produserRoutes);
 app.use('/api/v1/users', userRoutes);
