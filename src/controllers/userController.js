@@ -374,8 +374,8 @@ const getComments = async (req, res) => {
 
     const formattedComments = comments.map((comment) => ({
       comment_id: comment.comment_id,
-      project_id: comment.project.title,
-      commenter_id: comment.commenter.name,
+      project: comment.project.title,
+      commenter: comment.commenter.name,
       comment: comment.comment,
     }));
 
