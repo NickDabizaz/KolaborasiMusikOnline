@@ -55,7 +55,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "budiganteng2",
+									"value": "budiganteng",
 									"description": "Username untuk akun user. Panjang username yang diperbolehkan antara 4-20 digit dan username harus unique",
 									"type": "text"
 								},
@@ -85,12 +85,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/register",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/register",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -148,12 +146,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/login",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/login",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -201,12 +197,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/listen/R001",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/listen/R001",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -265,12 +259,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment/P022",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/comment/P022",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -314,12 +306,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment/C021",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/comment/C021",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -369,12 +359,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment?keyword=Good song",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/comment?keyword=",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -384,7 +372,7 @@
 							"query": [
 								{
 									"key": "keyword",
-									"value": "Good song"
+									"value": ""
 								}
 							]
 						},
@@ -435,12 +423,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/comment/UID022",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/comment/UID022",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -482,7 +468,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDEyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1ODA4NywiZXhwIjoxNjg3MzYxNjg3fQ.LOJmw1e5W5xcH5gnnkMxtAICpeUatowf2SDL_2e6ckQ",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -499,12 +485,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/topup/UID022",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/topup/UID022",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -546,18 +530,16 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDEyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1ODA4NywiZXhwIjoxNjg3MzYxNjg3fQ.LOJmw1e5W5xcH5gnnkMxtAICpeUatowf2SDL_2e6ckQ",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/recharge/UID022",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/users/recharge/UID022",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -613,12 +595,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/register",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/musisi/register",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -688,12 +668,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/upload",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/musisi/upload",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -751,12 +729,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/recording?title=ducimus",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/musisi/recording?title=ducimus",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -817,12 +793,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/recording/R021",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/musisi/recording/R021",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -887,12 +861,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/recording/R021",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/musisi/recording/R021",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -940,12 +912,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/musisi/recording/R021",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/musisi/recording/R021",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -992,18 +962,16 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDEyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1ODA4NywiZXhwIjoxNjg3MzYxNjg3fQ.LOJmw1e5W5xcH5gnnkMxtAICpeUatowf2SDL_2e6ckQ",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/register",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/produser/register",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -1073,12 +1041,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/project",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/produser/project",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -1125,12 +1091,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/project/P025",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/produser/project/P025",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -1192,12 +1156,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/project?q=",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/produser/project?q=",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -1267,12 +1229,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/invite",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/produser/invite",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -1322,7 +1282,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzI0MjY4MiwiZXhwIjoxNjg3MjQ2MjgyfQ.YkCBMo3cCQGekjpynZ2AtWE54ITR3QwW3M2FIDG3Rzk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDEyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1ODA4NywiZXhwIjoxNjg3MzYxNjg3fQ.LOJmw1e5W5xcH5gnnkMxtAICpeUatowf2SDL_2e6ckQ",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -1332,7 +1292,7 @@
 							"formdata": [
 								{
 									"key": "project_id",
-									"value": "P022",
+									"value": "P001",
 									"description": "Id proyek",
 									"type": "text"
 								},
@@ -1345,12 +1305,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/uploadPoster",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/produser/uploadPoster",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
@@ -1384,18 +1342,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/produser/poster/P021",
-							"protocol": "http",
+							"raw": "{{HOST}}/api/v1/produser/poster/P001",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"v1",
 								"produser",
 								"poster",
-								"P021"
+								"P001"
 							]
 						},
 						"description": "Endpoint untuk mendapatkan poster suatu proyek\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
