@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ab6915de-682c-4e3e-b49e-7bf0b537b653",
+		"_postman_id": "55bd69aa-1161-4f6b-af91-d03788acd991",
 		"name": "Kolaborasi MusikOnline",
 		"description": "## **Collection ini mengandung dokumentasi MusikOnline**\n\n- Folder user berisi dokumen untuk user\n- Folder musisi berisi dokumen untuk musisi\n- Folder produser berisi dokumen untuk produser",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -55,7 +55,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "budiganteng",
+									"value": "budigantengproduser",
 									"description": "Username untuk akun user. Panjang username yang diperbolehkan antara 4-20 digit dan username harus unique",
 									"type": "text"
 								},
@@ -74,6 +74,7 @@
 								{
 									"key": "confirm_password",
 									"value": "Budidi(10)",
+									"description": "Konfirmasi passowrd harus sama dengan password",
 									"type": "text"
 								},
 								{
@@ -98,7 +99,95 @@
 						},
 						"description": "Endpoint ini digunakan untuk melakukan registrasi pengguna baru dalam aplikasi. Saat registrasi berhasil, pengguna akan memiliki akun baru yang dapat digunakan untuk mengakses fitur-fitur yang disediakan."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register New User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "budiganteng",
+											"description": "Username untuk akun user. Panjang username yang diperbolehkan antara 4-20 digit dan username harus unique",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Budi Didi",
+											"description": "Nama untuk akun user. Panjang nama yang diperbolehkan antara 4-50 digit.",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Budidi(10)",
+											"description": "Password untuk akun user. Password harus memiliki 4-20 karakter, minimal 1 karakter kecil, 1 karakter besar, 1 angka, dan 1 simbol.",
+											"type": "text"
+										},
+										{
+											"key": "confirm_password",
+											"value": "Budidi(10)",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "budidi10@gmail.com",
+											"description": "Email untuk akun user.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://magnetic-topaz-mitten.glitch.me/api/v1/users/register",
+									"protocol": "https",
+									"host": [
+										"magnetic-topaz-mitten",
+										"glitch",
+										"me"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:03:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "263"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"107-HzQl+LfGSLDBf8sU1Ab8Y1PSTUk\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully\",\n    \"user\": {\n        \"user_id\": \"UID011\",\n        \"username\": \"budiganteng\",\n        \"name\": \"budiganteng\",\n        \"email\": \"budidi10@gmail.com\",\n        \"role\": \"member\",\n        \"balance\": 0,\n        \"api_hit\": 0,\n        \"createdAt\": \"2023-06-21T15:03:55.726Z\",\n        \"updatedAt\": \"2023-06-21T15:03:55.726Z\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Login User",
@@ -133,7 +222,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "budiganteng",
+									"value": "budigantengproduser",
 									"description": "Username dari akun yang ingin dipakai",
 									"type": "text"
 								},
@@ -159,7 +248,75 @@
 						},
 						"description": "Endpoint untuk melakukan penambahan saldo ke akun pengguna. Perlu diingat bahwa fitur ini memerlukan token yang didapatkan dari login. Return dari endpoint ini adalah berupa token yang diperlukan untuk mengakses fitur-fitur lainnya. Masa aktif token sendiri adalah 1 jam."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Login User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "budiganteng",
+											"description": "Username dari akun yang ingin dipakai",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Budidi(10)",
+											"description": "Password dari akun ayng ingin dipakai",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/users/login",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:04:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "225"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"e1-mqbhhwTWjH5iAOFt9V3bcr3W3Bg\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login success\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Listen to Music",
@@ -191,13 +348,13 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
 								"description": "Token yang didapat pada saat melakukan login",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{HOST}}/api/v1/users/listen/R001",
+							"raw": "{{HOST}}/api/v1/users/listen/R021",
 							"host": [
 								"{{HOST}}"
 							],
@@ -206,12 +363,75 @@
 								"v1",
 								"users",
 								"listen",
-								"R001"
+								"R021"
 							]
 						},
 						"description": "Endpoint untuk mendapatkan link dari musik yang dicari.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Listen to Music",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
+										"description": "Token yang didapat pada saat melakukan login",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/users/listen/R021",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"listen",
+										"R021"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-GUjy+ZbOCk9d99zBD5GCF8RSRsI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:56:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Love Yourself\",\n    \"url\": \"https://open.spotify.com/intl-id/track/50kpGaPAhYJ3sGmk6vplg0\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Give Comment",
@@ -242,7 +462,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -259,7 +479,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/users/comment/P022",
+							"raw": "{{HOST}}/api/v1/users/comment/P020",
 							"host": [
 								"{{HOST}}"
 							],
@@ -268,12 +488,86 @@
 								"v1",
 								"users",
 								"comment",
-								"P022"
+								"P020"
 							]
 						},
 						"description": "Endpoint untuk menambahkan comment pada proyek yang diinginkan.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Give Comment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "comment",
+											"value": "Good song!",
+											"description": "Comment yang ingin di posting",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/users/comment/P020",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"comment",
+										"P020"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-GAe3lAtvi/3xNCKilBaYnXQ872s\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:55:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Comment posted successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete Comment",
@@ -300,7 +594,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
 								"description": "Token yang didapat pada saat melakukan login",
 								"type": "text"
 							}
@@ -320,7 +614,70 @@
 						},
 						"description": "Endpoint yang digunakan user untuk menghapus commentnya sendiri.\n\n\\`\n\nNote:\n\n- User tidak diperbolehkan menghapus comment user lain\n- Fitur ini memerlukan token yang didapatkan dari login.\n- Fitur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delete Comment",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
+										"description": "Token yang didapat pada saat melakukan login",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/users/comment/C021",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"comment",
+										"C021"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d-70mSyGegL88N/vo54wQGtQ3rJWg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:58:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Successfully deleted comment!"
+						}
+					]
 				},
 				{
 					"name": "Search Comments",
@@ -344,8 +701,6 @@
 									"\r",
 									"  comments.forEach((comment) => {\r",
 									"    pm.expect(comment).to.have.property(\"comment_id\").to.be.a(\"string\");\r",
-									"    pm.expect(comment).to.have.property(\"project_id\").to.be.a(\"string\");\r",
-									"    pm.expect(comment).to.have.property(\"commenter_id\").to.be.a(\"string\");\r",
 									"    pm.expect(comment).to.have.property(\"comment\").to.be.a(\"string\");\r",
 									"  });\r",
 									"});\r",
@@ -378,7 +733,64 @@
 						},
 						"description": "Endpoint untuk mencari semua comment yang mengandung kata yang diinginkan.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Search Comments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/users/comment?keyword=",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"comment"
+									],
+									"query": [
+										{
+											"key": "keyword",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:05:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1486"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"5ce-ycR6Ia1emctSZZRytW+meAMxSnk\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"comments\": [\n        {\n            \"comment_id\": \"C001\",\n            \"project_id\": \"quas doloremque itaque\",\n            \"commenter_id\": \"Walton Bradtke\",\n            \"comment\": \"Exercitationem consequuntur blanditiis porro nostrum consectetur.\"\n        },\n        {\n            \"comment_id\": \"C002\",\n            \"project_id\": \"eos eveniet quam\",\n            \"commenter_id\": \"Raina Hickle\",\n            \"comment\": \"Optio alias hic repudiandae voluptatibus aspernatur explicabo dolor.\"\n        },\n        {\n            \"comment_id\": \"C003\",\n            \"project_id\": \"repellendus ut officia\",\n            \"commenter_id\": \"Madison Bergstrom\",\n            \"comment\": \"Aliquid ut consectetur.\"\n        },\n        {\n            \"comment_id\": \"C004\",\n            \"project_id\": \"placeat modi nihil\",\n            \"commenter_id\": \"Austyn Upton\",\n            \"comment\": \"Ipsam labore necessitatibus doloribus quod architecto voluptatem quasi provident.\"\n        },\n        {\n            \"comment_id\": \"C005\",\n            \"project_id\": \"quos delectus dolorum\",\n            \"commenter_id\": \"Shea Kutch\",\n            \"comment\": \"Corporis nulla consectetur natus.\"\n        },\n        {\n            \"comment_id\": \"C006\",\n            \"project_id\": \"exercitationem illo minus\",\n            \"commenter_id\": \"Mekhi Haley\",\n            \"comment\": \"Suscipit itaque quisquam ad.\"\n        },\n        {\n            \"comment_id\": \"C007\",\n            \"project_id\": \"molestiae dicta ducimus\",\n            \"commenter_id\": \"Vella Hilpert\",\n            \"comment\": \"Soluta adipisci sit ratione minus unde asperiores.\"\n        },\n        {\n            \"comment_id\": \"C008\",\n            \"project_id\": \"fugiat nihil porro\",\n            \"commenter_id\": \"Esperanza Hamill\",\n            \"comment\": \"Inventore sunt amet reprehenderit fugiat impedit dolores eos doloribus.\"\n        },\n        {\n            \"comment_id\": \"C009\",\n            \"project_id\": \"dolorum minus enim\",\n            \"commenter_id\": \"Trey Treutel\",\n            \"comment\": \"Quidem alias a at.\"\n        },\n        {\n            \"comment_id\": \"C010\",\n            \"project_id\": \"at odio eligendi\",\n            \"commenter_id\": \"Danial Reichel\",\n            \"comment\": \"Nam animi quos.\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User Comment",
@@ -417,7 +829,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -437,7 +849,70 @@
 						},
 						"description": "Endpoint untuk mendapatkan semua comment yang milik seorang user.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get User Comment",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/users/comment/UID022",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"comment",
+										"UID022"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-g2QCBFEhFdYMVXdOV+8hfhEGNBY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:44:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"comments\": [\n        {\n            \"comment_id\": \"C011\",\n            \"project_title\": \"nobis nemo odit\",\n            \"comment\": \"Nobis inventore at unde animi.\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Top-up",
@@ -468,7 +943,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDEyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1ODA4NywiZXhwIjoxNjg3MzYxNjg3fQ.LOJmw1e5W5xcH5gnnkMxtAICpeUatowf2SDL_2e6ckQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -499,7 +974,77 @@
 						},
 						"description": "Endpoint untuk melakukan penambahan saldo pengguna.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Top-up",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
+										"type": "default",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "100000",
+											"description": "Jumlah saldo yang ingin ditambahkan",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/users/topup/UID022",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"topup",
+										"UID022"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:04:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"1f-k4EsLCXKc4KfWeXBTqDs5VRNBqw\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Top-up successful\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Recharge",
@@ -530,7 +1075,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDEyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1ODA4NywiZXhwIjoxNjg3MzYxNjg3fQ.LOJmw1e5W5xcH5gnnkMxtAICpeUatowf2SDL_2e6ckQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -550,7 +1095,66 @@
 						},
 						"description": "Endpoint yang digunakan untuk menambahkan jumlah api_hit akun pengguna. Harga dari api_hit adalah Rp 5.000,00 untuk 200 api_hit. Api_hit diperlukan untuk mengakses beberapa fitur-fitur tertentu.\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Recharge",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDExIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1OTg2MywiZXhwIjoxNjg3MzYzNDYzfQ.kZjMLkf7d3Kx6UJoP6gDF822oowDVTCQ9xveYkXh08M",
+										"type": "default",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/users/recharge/UID022",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"recharge",
+										"UID022"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:04:55 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"21-9XOvXn1RFQ2BUmK1ltE0cc27wmc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Recharge successful\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -589,7 +1193,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -608,7 +1212,69 @@
 						},
 						"description": "Endpoint ini digunakan untuk melakukan registrasi sebagai musisi\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan akun user yang telah ada untuk didaftarkan menjadi musisi\n- Fitur ini memerlukan token yang didapatkan dari login"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register Musisi",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/musisi/register",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musisi",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-BtQg0hLWrxChDIYla8QiZhY8RlA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:47:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully registered as a musician\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Upload Recording",
@@ -645,7 +1311,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -681,7 +1347,86 @@
 						},
 						"description": "Endpoint untuk musisi mengupload recordingnya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Upload Recording",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "song_title",
+											"value": "love yourself",
+											"description": "Judul Recording",
+											"type": "text"
+										},
+										{
+											"key": "project_id",
+											"value": "P001",
+											"description": "Id Proyek",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/musisi/upload",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musisi",
+										"upload"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "223"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"df-v/Gao5pG74+QmdsPXtOB/VmEPd8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:48:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Recording uploaded successfully\",\n    \"recording\": {\n        \"recording_id\": \"R021\",\n        \"project_id\": \"P001\",\n        \"musician_id\": \"UID024\",\n        \"title\": \"Love Yourself\",\n        \"song_url\": \"https://open.spotify.com/intl-id/track/50kpGaPAhYJ3sGmk6vplg0\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Recording",
@@ -723,7 +1468,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -748,7 +1493,75 @@
 						},
 						"description": "Endpoint untuk mendapatkan semua recording yang telah diupload user\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Recording",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/musisi/recording?title=ducimus",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musisi",
+										"recording"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "ducimus"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "436"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b4-Np/jRcHbDLTt0SYYKIVeZW7jO3o\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:48:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully retrieved recordings\",\n    \"recordings\": [\n        {\n            \"recording_id\": \"R002\",\n            \"title\": \"Cumque quod ducimus.\",\n            \"project_title\": \"at ipsa eum\",\n            \"musician\": \"Willie Gerlach\",\n            \"song_url\": \"https://loremflickr.com/640/480?lock=5172484783472640\"\n        },\n        {\n            \"recording_id\": \"R010\",\n            \"title\": \"Assumenda voluptas ducimus.\",\n            \"project_title\": \"fuga rerum deserunt\",\n            \"musician\": \"Stanley Davis\",\n            \"song_url\": \"https://loremflickr.com/640/480?lock=8192274397659136\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Detail Recording",
@@ -787,7 +1600,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -807,7 +1620,70 @@
 						},
 						"description": "Endpoint untuk mendapatkan detail dari suatu recording\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Detail Recording",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/musisi/recording/R021",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musisi",
+										"recording",
+										"R021"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "198"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c6-OULeIZq6Z0lDQ9J6pfYXmWnJpxw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:48:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"recording\": {\n        \"recording_id\": \"R021\",\n        \"project_title\": \"delectus tenetur sit\",\n        \"musician\": \"Budi Didi\",\n        \"title\": \"Love Yourself\",\n        \"song_url\": \"https://open.spotify.com/intl-id/track/50kpGaPAhYJ3sGmk6vplg0\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Recording",
@@ -844,7 +1720,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -875,7 +1751,81 @@
 						},
 						"description": "Endpoint untuk musisi mengupdaterecordingnya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update Recording",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "song_title",
+											"value": "perfect",
+											"description": "Judul baru",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/musisi/recording/R021",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musisi",
+										"recording",
+										"R021"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"97-i9m46VtI4xsLfmzs0CQCx6hq4f8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:48:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Recording updated successfully\",\n    \"recording\": {\n        \"title\": \"Perfect\",\n        \"song_url\": \"https://open.spotify.com/intl-id/track/0tgVpDi06FyKpA1z0VMD4v\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete Recording",
@@ -906,7 +1856,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -926,7 +1876,70 @@
 						},
 						"description": "Endpoint untuk musisi menghapus recordingnya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delete Recording",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI0IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ211c2lzaSIsImlhdCI6MTY4NzM2MjQyNiwiZXhwIjoxNjg3MzY2MDI2fQ.1prbxx5RciuXtxt2CNe7AFi7p3ftMjg3oTKxsWObbWI",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/musisi/recording/R021",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musisi",
+										"recording",
+										"R021"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-D9kXpdekx4Iz1hvUuaV7nfW6Sb8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:48:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Recording deleted successfully\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -962,7 +1975,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDEyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1ODA4NywiZXhwIjoxNjg3MzYxNjg3fQ.LOJmw1e5W5xcH5gnnkMxtAICpeUatowf2SDL_2e6ckQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -981,7 +1994,69 @@
 						},
 						"description": "Endpoint untuk melakukan registrasi sebagai produser\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan akun user yang sudah ada untuk didaftarkan sebagai produser\n- Fitur ini memerlukan token yang didapatkan dari login."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register Produser",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/produser/register",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"produser",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-o0Ma3/OperYJ99xNCYuF1GtJTBs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:49:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully registered as a producer\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Create Project",
@@ -1018,7 +2093,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -1054,7 +2129,86 @@
 						},
 						"description": "Endpoint untuk produser membuat proyek baru\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create Project",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Proyek Z",
+											"description": "Judul proyek",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Ini proyek Z",
+											"description": "keterangan proyek",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/produser/project",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"produser",
+										"project"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "214"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d6-/SWs8kzR/Z8LNGRJgTwWbqMk+kI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:50:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Project registered successfully\",\n    \"project_id\": \"P023\",\n    \"title\": \"Proyek Z\",\n    \"description\": \"Ini proyek Z\",\n    \"producer_id\": \"UID025\",\n    \"createdAt\": \"2023-06-21T15:50:41.379Z\",\n    \"updatedAt\": \"2023-06-21T15:50:41.379Z\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete Project",
@@ -1085,13 +2239,13 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
 						],
 						"url": {
-							"raw": "{{HOST}}/api/v1/produser/project/P025",
+							"raw": "{{HOST}}/api/v1/produser/project/P021",
 							"host": [
 								"{{HOST}}"
 							],
@@ -1100,12 +2254,75 @@
 								"v1",
 								"produser",
 								"project",
-								"P025"
+								"P021"
 							]
 						},
 						"description": "Endpoint untuk produser menghapus proyeknya\n\n\\`\n\nNote:\n\n- Produser tidak bisa menghapus proyek produser lain\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delete Project",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/produser/project/P021",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"produser",
+										"project",
+										"P021"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-gXbk+f8QtVxK4SL0SjvvnvtyF6w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:54:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Project post successfully deleted\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Projects",
@@ -1150,7 +2367,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -1175,7 +2392,75 @@
 						},
 						"description": "Endpoint untuk mendapatkan semua proyek dimana user merupakan anggota dari proyek tersebut\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Projects",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/api/v1/produser/project?q=",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"produser",
+										"project"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2267"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8db-GQojaLuurZ4J30kbGj0qJLtnBhU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:50:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"page\": 1,\n    \"total_pages\": 3,\n    \"total_results\": 23,\n    \"projects\": [\n        {\n            \"project_id\": \"P001\",\n            \"title\": \"delectus tenetur sit\",\n            \"description\": \"Laborum nisi enim ratione natus inventore enim pariatur sit sunt.\",\n            \"producer_id\": \"UID001\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P002\",\n            \"title\": \"at ipsa eum\",\n            \"description\": \"Blanditiis repellat sint.\",\n            \"producer_id\": \"UID002\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P003\",\n            \"title\": \"impedit quas sit\",\n            \"description\": \"Illum voluptate hic autem sunt.\",\n            \"producer_id\": \"UID003\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P004\",\n            \"title\": \"possimus iure aut\",\n            \"description\": \"Laudantium nihil eum facere perferendis ipsam ut.\",\n            \"producer_id\": \"UID004\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P005\",\n            \"title\": \"molestiae nulla dicta\",\n            \"description\": \"Voluptatum culpa tenetur esse provident possimus officia id.\",\n            \"producer_id\": \"UID005\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P006\",\n            \"title\": \"impedit minus unde\",\n            \"description\": \"Harum voluptas cum accusamus fugiat placeat necessitatibus officia aspernatur in.\",\n            \"producer_id\": \"UID006\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P007\",\n            \"title\": \"accusamus fuga quibusdam\",\n            \"description\": \"Ducimus ullam eos quod enim voluptates in accusamus.\",\n            \"producer_id\": \"UID007\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P008\",\n            \"title\": \"similique officia tempora\",\n            \"description\": \"Cumque praesentium explicabo.\",\n            \"producer_id\": \"UID008\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P009\",\n            \"title\": \"eius voluptates voluptatibus\",\n            \"description\": \"Officia magnam ab voluptatibus esse nobis quidem distinctio explicabo.\",\n            \"producer_id\": \"UID009\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        },\n        {\n            \"project_id\": \"P010\",\n            \"title\": \"fuga rerum deserunt\",\n            \"description\": \"Repellat veniam necessitatibus ab non.\",\n            \"producer_id\": \"UID010\",\n            \"createdAt\": \"2023-06-18T15:14:15.000Z\",\n            \"updatedAt\": \"2023-06-18T15:14:15.000Z\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Invite Musisi",
@@ -1206,7 +2491,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDIyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzIzODk5MSwiZXhwIjoxNjg3MjQyNTkxfQ.-YVycazh6RmkXIJ7LtTlXdOvCxUcTShhP_gkES0R4ME",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
 								"type": "text",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -1242,7 +2527,86 @@
 						},
 						"description": "Endpoint untuk produser mengundang musisi untuk bergabung di proyeknya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Invite Musisi",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
+										"type": "text",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "project_id",
+											"value": "P001",
+											"description": "Id Proyek",
+											"type": "text"
+										},
+										{
+											"key": "user_id",
+											"value": "UID022",
+											"description": "Id user yang diinvite",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/produser/invite",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"produser",
+										"invite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"47-jRYpQHpK4Vh4hcXQWNoK9GO7Qg4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:50:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The musician has been successfully invited to the project\"\n}"
+						}
+					]
 				},
 				{
 					"name": "uploadPoster",
@@ -1282,7 +2646,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDEyIiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZyIsImlhdCI6MTY4NzM1ODA4NywiZXhwIjoxNjg3MzYxNjg3fQ.LOJmw1e5W5xcH5gnnkMxtAICpeUatowf2SDL_2e6ckQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
 								"type": "default",
 								"description": "Token yang didapat pada saat melakukan login"
 							}
@@ -1318,7 +2682,86 @@
 						},
 						"description": "Endpoint untuk produser mengupload poster proyeknya\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "uploadPoster",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVUlEMDI1IiwidXNlcm5hbWUiOiJidWRpZ2FudGVuZ3Byb2R1c2VyIiwiaWF0IjoxNjg3MzYyNTgyLCJleHAiOjE2ODczNjYxODJ9.6tGU5XH56cnF47OBNedYS0K8V3VSU4-NwaNgNPMbekw",
+										"type": "default",
+										"description": "Token yang didapat pada saat melakukan login"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "project_id",
+											"value": "P001",
+											"description": "Id proyek",
+											"type": "text"
+										},
+										{
+											"key": "poster",
+											"description": "Poster",
+											"type": "file",
+											"src": "/C:/Users/Nicklaus/Downloads/kobo.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/produser/uploadPoster",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"produser",
+										"uploadPoster"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-Mcw1p0sYgcy6abLyp1Xe0aji+X4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 15:51:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Poster uploaded successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "getPoster",
@@ -1342,7 +2785,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/api/v1/produser/poster/P001",
+							"raw": "{{HOST}}/api/v1/produser/poster/P021",
 							"host": [
 								"{{HOST}}"
 							],
@@ -1351,7 +2794,7 @@
 								"v1",
 								"produser",
 								"poster",
-								"P001"
+								"P021"
 							]
 						},
 						"description": "Endpoint untuk mendapatkan poster suatu proyek\n\n\\`\n\nNote:\n\n- Fitur ini memerlukan token yang didapatkan dari login.\n- FItur ini berharga 1 api_hit"
